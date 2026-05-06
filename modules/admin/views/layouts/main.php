@@ -71,9 +71,7 @@ ModuleAsset::register($this);
 
 <footer class="footer">
     <div class="container-fluid">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
-
-        <p class="pull-right"><?= Yii::powered() ?></p>
+        <p class="pull-right">&copy; New Thinking School of Central <Asia></Asia> <?= date('Y') ?></p>
     </div>
 </footer>
 
