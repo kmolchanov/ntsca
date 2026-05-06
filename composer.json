@@ -34,6 +34,9 @@
         },
         "allow-plugins": {
             "yiisoft/yii2-composer": true
+        },
+        "audit": {
+            "block-insecure": false
         }
     },
     "scripts": {
