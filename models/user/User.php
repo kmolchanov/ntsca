@@ -1,6 +1,7 @@
 <?php
 namespace app\models\user;
 
+use dektrium\user\helpers\Password;
 use Yii;
 use dektrium\user\models\User as BaseUser;
 use yii\helpers\ArrayHelper;
@@ -74,5 +75,37 @@ class User extends BaseUser
         $users = self::find()->asArray()->all();
 
         return ArrayHelper::map($users, 'id', 'username');
+    }
+
+    public function create()
+    {
+        if ($this->getIsNewRecord() == false) {
+            throw new \RuntimeException('Calling "' . __CLASS__ . '::' . __METHOD__ . '" on existing user');
+        }
+
+        $transaction = $this->getDb()->beginTransaction();
+
+        try {
+            $this->password = ($this->password == null && $this->module->enableGeneratingPassword) ? Password::generate(8) : $this->password;
+
+            $this->trigger(self::BEFORE_CREATE);
+
+            if (!$this->save()) {
+                $transaction->rollBack();
+                return false;
+            }
+
+            $this->confirm();
+
+            $this->trigger(self::AFTER_CREATE);
+
+            $transaction->commit();
+
+            return true;
+        } catch (\Exception $e) {
+            $transaction->rollBack();
+            \Yii::warning($e->getMessage());
+            throw $e;
+        }
     }
 }
