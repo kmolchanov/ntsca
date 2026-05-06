@@ -1,35 +1,17 @@
 <?php
-use yii\helpers\ArrayHelper;
+
 use yii\console\controllers\MigrateController;
 
-$db = file_exists(__DIR__ . '/db-local.php') ?
-    ArrayHelper::merge(
-        require(__DIR__ . '/db.php'),
-        require(__DIR__ . '/db-local.php')
-    ) : require(__DIR__ . '/db.php');
-
-$params = file_exists(__DIR__ . '/params-local.php') ?
-    ArrayHelper::merge(
-        require(__DIR__ . '/params.php'),
-        require(__DIR__ . '/params-local.php')
-    ) : require(__DIR__ . '/params.php');
-
-$mailer = file_exists(__DIR__ . '/mailer-local.php') ?
-    ArrayHelper::merge(
-        require(__DIR__ . '/mailer.php'),
-        require(__DIR__ . '/mailer-local.php')
-    ) : require(__DIR__ . '/mailer.php');
-
-$user = file_exists(__DIR__ . '/user-local.php') ?
-    ArrayHelper::merge(
-        require(__DIR__ . '/user.php'),
-        require(__DIR__ . '/user-local.php')
-    ) : require(__DIR__ . '/user.php');
+$db = file_exists(__DIR__ . '/db-local.php') ? require(__DIR__ . '/db-local.php') : require(__DIR__ . '/db.php');
+$params = file_exists(__DIR__ . '/params-local.php') ? require(__DIR__ . '/params-local.php') : require(__DIR__ . '/params.php');
+$mailer = file_exists(__DIR__ . '/mailer-local.php') ? require(__DIR__ . '/mailer-local.php') : require(__DIR__ . '/mailer.php');
+$user = file_exists(__DIR__ . '/user-local.php') ? require(__DIR__ . '/user-local.php') : require(__DIR__ . '/user.php');
 
 $config = [
-    'id' => 'basic-custom-console',
-    'name' => 'Basic Custom',
+    'id' => 'ntsca-console',
+    'name' => 'NTSCA',
     'language' => 'ru-RU',
+    'timeZone' => 'Asia/Bishkek',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
