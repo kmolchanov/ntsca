@@ -25,5 +25,5 @@ at [getcomposer.org](http://getcomposer.org/doc/00-intro.md#installation-nix).
 You can then install this project template using the following command:
 
 ~~~
-composer create-project --prefer-dist kmolchanov/yii2-app-basic-custom basic
+composer create-project --prefer-dist yiisoft/yii2-app-basic basic
 ~~~
