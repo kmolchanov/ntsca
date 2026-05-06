@@ -1,6 +1,6 @@
 <?php
 
-file_exists(__DIR__ . '/env.php') ? require __DIR__ . '/env.php' : require __DIR__ . '/env-production.php';
+file_exists(__DIR__ . '/../env.php') ? require __DIR__ . '/../env.php' : require __DIR__ . '/../env-production.php';
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
