@@ -17,10 +17,10 @@ class ManageUserController extends Controller
      * user via email.
      *
      * @param string $email Email address
-     * @param null|string $password Password (if null it will be generated automatically)
+     * @param string $password Password (if null it will be generated automatically)
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionCreate($email,  $password = null)
+    public function actionCreate($email,  $password)
     {
         $user = Yii::createObject([
             'class'    => User::className(),
