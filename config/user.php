@@ -5,7 +5,7 @@ return [
     'layout' => '@app/modules/admin/views/layouts/main',
     'enableRegistration' => false,
     'enableConfirmation' => false,
-    'enablePasswordRecovery' => true,
+    'enablePasswordRecovery' => false,
     'enableFlashMessages' => false,
     'adminPermission' => 'admin-access',
     'modelMap' => [
