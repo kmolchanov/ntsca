@@ -44,6 +44,7 @@ ModuleAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            ['label' => 'Страницы', 'url' => ['/admin/page/index'], 'visible' => Yii::$app->user->can('admin')],
             ['label' => 'Вход', 'url' => ['/user/login/'], 'visible' => Yii::$app->user->isGuest],
             ['label' => !Yii::$app->user->isGuest ? Yii::$app->user->identity->username : '', 'items' => [
                 ['label' => 'Пользователи', 'url' => ['/user/admin/index'], 'visible' => Yii::$app->user->can('admin-access')],
