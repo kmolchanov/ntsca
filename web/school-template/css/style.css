@@ -613,6 +613,9 @@ h1, h2, h3, h4, h5,
     padding-top: 10px !important;
     padding-bottom: 10px !important; }
 
+.site-main {
+  padding-top: 142px; }
+
 /* Blocks */
 .intro-section {
   position: relative; }

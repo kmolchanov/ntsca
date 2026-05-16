@@ -66,7 +66,9 @@ $this->registerLinkTag(['rel' => 'manifest', 'href' => Yii::getAlias('@web/site.
             </div>
         </div>
     </header>
-    <?= $content ?>
+    <main class="site-main">
+        <?= $content ?>
+    </main>
 </div>
 <?php $this->endBody() ?>
 </body>
