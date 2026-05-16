@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\web\Controller;
+use yii\web\Response;
 
 class SiteController extends Controller
 {
@@ -19,13 +20,38 @@ class SiteController extends Controller
         ];
     }
 
-    /**
+/**
      * Displays homepage.
      *
-     * @return string
+     * @param $lang
+     * @return string|Response
      */
-    public function actionIndex()
+    public function actionIndex($lang = 'ru')
     {
-        return $this->render('index');
+        $allowed = ['ru', 'en', 'kg'];
+
+        if (!in_array($lang, $allowed)) {
+            $lang = 'ru';
+        }
+
+        $langMap = [
+            'ru' => 'ru-RU',
+            'en' => 'en-US',
+            'kg' => 'ky-KG',
+        ];
+
+        $appNameMap = [
+            'ru' => 'Школа Нового Мышления в Центральной Азии',
+            'en' => 'New Thinking School of Central Asia',
+            'kg' => 'Борбордук Азиядагы Жаңы Ой Жүгүртүү Мектеби',
+        ];
+
+        Yii::$app->language = $langMap[$lang];
+        Yii::$app->params['appName'] = $appNameMap[$lang];
+        Yii::$app->params['lang'] = $lang;
+
+        return $this->render('index', [
+            'lang' => $lang
+        ]);
     }
 }
