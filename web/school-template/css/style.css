@@ -301,13 +301,14 @@ h1, h2, h3, h4, h5,
   font-weight: 900;
   font-size: 1.3rem; }
   .site-logo a {
-    color: #fff; }
+    color: #000; }
 
 .site-navbar {
   margin-bottom: 0px;
   z-index: 1999;
   position: absolute;
-  width: 100%; }
+  width: 100%;
+  background: #fff; }
   .site-navbar .container-fluid {
     padding-left: 7rem;
     padding-right: 7rem; }
@@ -330,11 +331,11 @@ h1, h2, h3, h4, h5,
       display: inline-block; }
       .site-navbar .site-navigation .site-menu > li > a {
         padding: 5px 20px;
-        color: #fff;
+        color: #000;
         display: inline-block;
         text-decoration: none !important; }
         .site-navbar .site-navigation .site-menu > li > a:hover {
-          color: #fff; }
+          color: #7971ea; }
     .site-navbar .site-navigation .site-menu .has-children {
       position: relative; }
       .site-navbar .site-navigation .site-menu .has-children > a {
@@ -581,11 +582,11 @@ h1, h2, h3, h4, h5,
     .sticky-wrapper .site-navbar .site-menu > li {
       display: inline-block; }
       .sticky-wrapper .site-navbar .site-menu > li > a.active {
-        color: #fff;
+        color: #000;
         position: relative; }
         .sticky-wrapper .site-navbar .site-menu > li > a.active:after {
           height: 2px;
-          background: #fff;
+          background: #7971ea;
           content: "";
           position: absolute;
           bottom: 0;
