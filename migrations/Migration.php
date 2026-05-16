@@ -17,7 +17,7 @@ class Migration extends BaseMigration
     public function init()
     {
         if ($this->db->driverName === 'mysql') {
-            $this->tableOptions = 'CHARACTER SET utf8 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB';
+            $this->tableOptions = 'CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE=InnoDB';
         }
     }
 }
