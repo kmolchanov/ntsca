@@ -8,6 +8,7 @@ use klisl\nestable\NodeMoveAction;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\Url;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -48,6 +49,17 @@ class PageController extends BaseController
             'nodeMove' => [
                 'class' => NodeMoveAction::className(),
                 'modelName' => Page::className(),
+            ],
+            'image-upload' => [
+                'class' => 'vova07\imperavi\actions\UploadFileAction',
+                'url' => Url::to('@web/uploads/pages/images', true), // Directory URL address, where files are stored.
+                'path' => '@webroot/uploads/pages/images', // Or absolute path to directory where files are stored.
+            ],
+            'file-upload' => [
+                'class' => 'vova07\imperavi\actions\UploadFileAction',
+                'url' => Url::to('@web/uploads/pages/files', true), // Directory URL address, where files are stored.
+                'path' => '@webroot/uploads/pages/files', // Or absolute path to directory where files are stored.
+                'uploadOnlyImage' => false, // For any kind of files uploading.
             ],
         ];
     }

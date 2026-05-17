@@ -19,6 +19,9 @@ use yii\behaviors\TimestampBehavior;
  * @property string|null $menu_title_ru Название в меню(Русский)
  * @property string|null $menu_title_en Название в меню(Английский)
  * @property string|null $menu_title_ky Название в меню(Кыргызский)
+ * @property string|null $content_ru Содержимое(Русский)
+ * @property string|null $content_en Содержимое(Английский)
+ * @property string|null $content_ky Содержимое(Кыргызский)
  * @property int $is_active Активная
  * @property int $is_main Главная
  * @property int $show_in_menu Показывать в меню
@@ -77,6 +80,7 @@ class Page extends \yii\db\ActiveRecord
             [['parent_id', 'is_active', 'is_main', 'show_in_menu', 'show_subpages', 'created_at', 'updated_at'], 'integer'],
             [['slug'], 'string', 'max' => 128],
             [['title_ru', 'title_en', 'title_ky', 'menu_title_ru', 'menu_title_en', 'menu_title_ky'], 'string', 'max' => 255],
+            [['content_ru', 'content_en', 'content_ky'], 'string'],
             [['slug'], 'unique', 'targetAttribute' => ['slug']],
             [['parent_id'], 'isNotChild'],
             [['parent_id'], 'isNotSame'],
@@ -125,6 +129,9 @@ class Page extends \yii\db\ActiveRecord
             'menu_title_ru' => 'Название в меню(Русский)',
             'menu_title_en' => 'Название в меню(Английский)',
             'menu_title_ky' => 'Название в меню(Кыргызский)',
+            'content_ru' => 'Содержимое(Русский)',
+            'content_en' => 'Содержимое(Английский)',
+            'content_ky' => 'Содержимое(Кыргызский)',
             'is_active' => 'Активная',
             'is_main' => 'Главная',
             'show_in_menu' => 'Показывать в меню',
