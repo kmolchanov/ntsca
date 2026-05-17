@@ -81,6 +81,7 @@ class Video extends \yii\db\ActiveRecord
             'description_ky' => 'Описание(Кыргызский)',
             'url' => 'Ссылка',
             'description_position' => 'Расположение описания',
+            'descriptionPositionString' => 'Расположение описания',
             'created_at' => 'Создано',
             'updated_at' => 'Обновлено',
         ];
