@@ -4,6 +4,7 @@ namespace app\models;
 
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "{{%video}}".
@@ -83,6 +84,86 @@ class Video extends \yii\db\ActiveRecord
             'created_at' => 'Создано',
             'updated_at' => 'Обновлено',
         ];
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getYoutubePlayerHtml(): ?string
+    {
+        if (!$this->youtubeEmbedUrl) {
+            return null;
+        }
+
+        return '
+            <div class="embed-responsive embed-responsive-16by9">
+                <iframe
+                    class="embed-responsive-item"
+                    src="' . Html::encode($this->youtubeEmbedUrl) . '"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        ';
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getYoutubePreviewHtml(): ?string
+    {
+        if (!$this->youtubeEmbedUrl) {
+            return null;
+        }
+
+        return '
+            <div style="width: 180px;">
+                <iframe
+                    src="' . Html::encode($this->youtubeEmbedUrl) . '"
+                    frameborder="0"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        ';
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getYoutubeId(): ?string
+    {
+        if (!$this->url) {
+            return null;
+        }
+
+        $patterns = [
+            '~youtube\.com/watch\?v=([^&]+)~',
+            '~youtu\.be/([^?&]+)~',
+            '~youtube\.com/embed/([^?&]+)~',
+            '~youtube\.com/shorts/([^?&]+)~',
+        ];
+
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $this->url, $matches)) {
+                return $matches[1];
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getYoutubeEmbedUrl(): ?string
+    {
+        $id = $this->getYoutubeId();
+
+        return 'https://www.youtube.com/embed/' . $id . '?' . http_build_query([
+            'rel' => 0,
+            'modestbranding' => 1,
+            'controls' => 1,
+            'showinfo' => 0,
+        ]);
     }
 
     /**

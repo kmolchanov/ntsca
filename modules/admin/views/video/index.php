@@ -24,10 +24,27 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            'title_ru',
-            'url:url',
-
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'label' => 'Превью',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return $model->youtubePreviewHtml;
+                },
+                'contentOptions' => ['style' => 'vertical-align: middle;'],
+            ],
+            [
+                'attribute' => 'title_ru',
+                'contentOptions' => ['style' => 'vertical-align: middle;'],
+            ],
+            [
+                'attribute' => 'url',
+                'format' => 'url',
+                'contentOptions' => ['style' => 'vertical-align: middle;'],
+            ],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'contentOptions' => ['style' => 'vertical-align: middle; white-space: nowrap;'],
+            ],
         ],
     ]); ?>
 

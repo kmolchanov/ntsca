@@ -26,6 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+    <?php if ($model->youtubePlayerHtml): ?>
+        <div class="text-center" style="margin-bottom: 40px;">
+            <div style="max-width: 700px; margin: 0 auto;">
+                <?= $model->youtubePlayerHtml ?>
+            </div>
+        </div>
+    <?php endif; ?>
+
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -37,8 +45,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'description_ky:ntext',
             'url:url',
             'descriptionPositionString',
-            'created_at:datetime:',
-            'updated_at:datetime:',
+            'created_at:datetime',
+            'updated_at:datetime',
         ],
     ]) ?>
 
