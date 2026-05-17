@@ -3,6 +3,7 @@
 namespace app\models;
 
 use creocoder\nestedsets\NestedSetsBehavior;
+use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -16,12 +17,15 @@ use yii\behaviors\TimestampBehavior;
  * @property string|null $title_ru Название(Русский)
  * @property string|null $title_en Название(Английский)
  * @property string|null $title_ky Название(Кыргызский)
+ * @property string|null $title Название
  * @property string|null $menu_title_ru Название в меню(Русский)
  * @property string|null $menu_title_en Название в меню(Английский)
  * @property string|null $menu_title_ky Название в меню(Кыргызский)
+ * @property string|null $menuTitle Название в меню
  * @property string|null $content_ru Содержимое(Русский)
  * @property string|null $content_en Содержимое(Английский)
  * @property string|null $content_ky Содержимое(Кыргызский)
+ * @property string|null $content Содержимое
  * @property int|null $top_gallery_id ID Галереи(сверху)
  * @property int|null $bottom_gallery_id ID Галереи(снизу)
  * @property int|null $top_video_id ID Видео(сверху)
@@ -94,7 +98,7 @@ class Page extends \yii\db\ActiveRecord
             [['parent_id'], 'isNotChild'],
             [['parent_id'], 'isNotSame'],
             [['is_active', 'is_main', 'show_in_menu', 'show_subpages'], 'in', 'range' => [self::IS_NO, self::IS_YES]],
-            [['is_active', 'is_main', 'show_in_menu', 'show_subpages'], 'default', 'value' => self::IS_YES],
+            [['is_active', 'is_main', 'show_in_menu', 'show_subpages'], 'default', 'value' => self::IS_NO],
             [['top_gallery_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gallery::className(), 'targetAttribute' => ['top_gallery_id' => 'id']],
             [['bottom_gallery_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gallery::className(), 'targetAttribute' => ['bottom_gallery_id' => 'id']],
             [['top_video_id'], 'exist', 'skipOnError' => true, 'targetClass' => Video::className(), 'targetAttribute' => ['top_video_id' => 'id']],
@@ -156,6 +160,42 @@ class Page extends \yii\db\ActiveRecord
             'created_at' => 'Создана',
             'updated_at' => 'Обновлена',
         ];
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->getLocalizedAttribute('title');
+    }
+
+    /**
+     * @return mixed|string|null
+     */
+    public function getMenuTitle()
+    {
+        return $this->getLocalizedAttribute('menu_title') ?: $this->title;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getContent()
+    {
+        return $this->getLocalizedAttribute('content');
+    }
+
+    /**
+     * @param string $attribute
+     * @return string|null
+     */
+    protected function getLocalizedAttribute(string $attribute): ?string
+    {
+        $lang = Yii::$app->params['lang'] ?? Yii::$app->params['defaultLanguage'] ?? 'ru';
+        $field = $attribute . '_' . $lang;
+
+        return $this->{$field} ?: $this->{$attribute . '_ru'};
     }
 
     /**
