@@ -63,6 +63,13 @@ $config = [
             'class' => 'app\modules\admin\Module',
             'name' => 'Панель управления',
         ],
+        'yii2images' => [
+            'class' => 'rico\yii2images\Module',
+            'imagesStorePath' => 'uploads/images/store',
+            'imagesCachePath' => 'uploads/images/cache',
+            'graphicsLibrary' => 'Imagick',
+            'placeHolderPath' => '@webroot/images/placeHolder.png',
+        ],
     ],
     'params' => $params,
 ];

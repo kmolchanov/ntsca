@@ -46,6 +46,7 @@ $config = [
                 '@app/migrations',
                 '@vendor/dektrium/yii2-user/migrations',
                 '@yii/rbac/migrations',
+                '@vendor/costa-rico/yii2-images/migrations',
             ],
         ],
     ],
