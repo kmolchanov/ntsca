@@ -1,6 +1,8 @@
 <?php
 
+use app\models\Gallery;
 use app\models\Page;
+use app\models\Video;
 use kartik\widgets\Select2;
 use vova07\imperavi\Widget;
 use yii\helpers\Html;
@@ -131,6 +133,54 @@ use yii\widgets\ActiveForm;
             ],
         ]
     ); ?>
+
+    <?= $form->field($model, 'top_gallery_id')->widget(Select2::className(), [
+        'id' => rand(),
+        'data' => Gallery::getList(),
+        'options' => [
+            'encode' => false,
+            'placeholder' => 'Выберите галерею ...',
+        ],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ]) ?>
+
+    <?= $form->field($model, 'bottom_gallery_id')->widget(Select2::className(), [
+        'id' => rand(),
+        'data' => Gallery::getList(),
+        'options' => [
+            'encode' => false,
+            'placeholder' => 'Выберите галерею ...',
+        ],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ]) ?>
+
+    <?= $form->field($model, 'top_video_id')->widget(Select2::className(), [
+        'id' => rand(),
+        'data' => Video::getList(),
+        'options' => [
+            'encode' => false,
+            'placeholder' => 'Выберите видео ...',
+        ],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ]) ?>
+
+    <?= $form->field($model, 'bottom_video_id')->widget(Select2::className(), [
+        'id' => rand(),
+        'data' => Video::getList(),
+        'options' => [
+            'encode' => false,
+            'placeholder' => 'Выберите видео ...',
+        ],
+        'pluginOptions' => [
+            'allowClear' => true,
+        ],
+    ]) ?>
 
     <?= $form->field($model, 'is_active')->checkbox() ?>
 

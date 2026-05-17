@@ -22,12 +22,21 @@ use yii\behaviors\TimestampBehavior;
  * @property string|null $content_ru Содержимое(Русский)
  * @property string|null $content_en Содержимое(Английский)
  * @property string|null $content_ky Содержимое(Кыргызский)
+ * @property int|null $top_gallery_id ID Галереи(сверху)
+ * @property int|null $bottom_gallery_id ID Галереи(снизу)
+ * @property int|null $top_video_id ID Видео(сверху)
+ * @property int|null $bottom_video_id ID Видео(снизу)
  * @property int $is_active Активная
  * @property int $is_main Главная
  * @property int $show_in_menu Показывать в меню
  * @property int $show_subpages Показывать подстраницы
  * @property int|null $created_at Создана
  * @property int|null $updated_at Обновлена
+ *
+ * @property Gallery $topGallery
+ * @property Gallery $bottomGallery
+ * @property Video $topVideo
+ * @property Video $bottomVideo
  */
 class Page extends \yii\db\ActiveRecord
 {
@@ -77,7 +86,7 @@ class Page extends \yii\db\ActiveRecord
     {
         return [
             [['slug', 'title_ru', 'title_en', 'title_ky', 'menu_title_ru', 'menu_title_en', 'menu_title_ky'], 'required'],
-            [['parent_id', 'is_active', 'is_main', 'show_in_menu', 'show_subpages', 'created_at', 'updated_at'], 'integer'],
+            [['parent_id', 'top_gallery_id', 'bottom_gallery_id', 'top_video_id', 'bottom_video_id', 'is_active', 'is_main', 'show_in_menu', 'show_subpages', 'created_at', 'updated_at'], 'integer'],
             [['slug'], 'string', 'max' => 128],
             [['title_ru', 'title_en', 'title_ky', 'menu_title_ru', 'menu_title_en', 'menu_title_ky'], 'string', 'max' => 255],
             [['content_ru', 'content_en', 'content_ky'], 'string'],
@@ -86,6 +95,10 @@ class Page extends \yii\db\ActiveRecord
             [['parent_id'], 'isNotSame'],
             [['is_active', 'is_main', 'show_in_menu', 'show_subpages'], 'in', 'range' => [self::IS_NO, self::IS_YES]],
             [['is_active', 'is_main', 'show_in_menu', 'show_subpages'], 'default', 'value' => self::IS_YES],
+            [['top_gallery_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gallery::className(), 'targetAttribute' => ['top_gallery_id' => 'id']],
+            [['bottom_gallery_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gallery::className(), 'targetAttribute' => ['bottom_gallery_id' => 'id']],
+            [['top_video_id'], 'exist', 'skipOnError' => true, 'targetClass' => Video::className(), 'targetAttribute' => ['top_video_id' => 'id']],
+            [['bottom_video_id'], 'exist', 'skipOnError' => true, 'targetClass' => Video::className(), 'targetAttribute' => ['bottom_video_id' => 'id']],
         ];
     }
 
@@ -132,6 +145,10 @@ class Page extends \yii\db\ActiveRecord
             'content_ru' => 'Содержимое(Русский)',
             'content_en' => 'Содержимое(Английский)',
             'content_ky' => 'Содержимое(Кыргызский)',
+            'top_gallery_id' => 'Галерея(сверху)',
+            'bottom_gallery_id' => 'Галерея(снизу)',
+            'top_video_id' => 'Видео(сверху)',
+            'bottom_video_id' => 'Видео(снизу)',
             'is_active' => 'Активная',
             'is_main' => 'Главная',
             'show_in_menu' => 'Показывать в меню',
@@ -212,6 +229,46 @@ class Page extends \yii\db\ActiveRecord
     public function getSubpages()
     {
         return $this->children(1)->all();
+    }
+
+    /**
+     * Gets query for [[TopGallery]].
+     *
+     * @return \yii\db\ActiveQuery|GalleryQuery
+     */
+    public function getTopGallery()
+    {
+        return $this->hasOne(Gallery::className(), ['id' => 'top_gallery_id']);
+    }
+
+    /**
+     * Gets query for [[BottomGallery]].
+     *
+     * @return \yii\db\ActiveQuery|GalleryQuery
+     */
+    public function getBottomGallery()
+    {
+        return $this->hasOne(Gallery::className(), ['id' => 'bottom_gallery_id']);
+    }
+
+    /**
+     * Gets query for [[TopVideo]].
+     *
+     * @return \yii\db\ActiveQuery|VideoQuery
+     */
+    public function getTopVideo()
+    {
+        return $this->hasOne(Video::className(), ['id' => 'top_video_id']);
+    }
+
+    /**
+     * Gets query for [[BottomVideo]].
+     *
+     * @return \yii\db\ActiveQuery|VideoQuery
+     */
+    public function getBottomVideo()
+    {
+        return $this->hasOne(Video::className(), ['id' => 'bottom_video_id']);
     }
 
     /**

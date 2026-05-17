@@ -39,6 +39,26 @@ $this->params['breadcrumbs'][] = $this->title;
             'content_ru:html',
             'content_en:ntext',
             'content_ky:ntext',
+            [
+                'attribute' => 'top_gallery_id',
+                'value' => $model->topGallery !== null ? Html::a($model->topGallery->title_ru, ['gallery/view', 'id' => $model->topGallery->id]) : null,
+                'format' => 'raw',
+            ],
+            [
+                'attribute' => 'bottom_gallery_id',
+                'value' => $model->bottomGallery !== null ? Html::a($model->bottomGallery->title_ru, ['gallery/view', 'id' => $model->bottomGallery->id]) : null,
+                'format' => 'raw',
+            ],
+            [
+                'attribute' => 'top_video_id',
+                'value' => $model->topVideo !== null ? Html::a($model->topVideo->title_ru, ['video/view', 'id' => $model->topVideo->id]) : null,
+                'format' => 'raw',
+            ],
+            [
+                'attribute' => 'bottom_video_id',
+                'value' => $model->bottomVideo !== null ? Html::a($model->bottomVideo->title_ru, ['video/view', 'id' => $model->bottomVideo->id]) : null,
+                'format' => 'raw',
+            ],
             'is_active:boolean',
             'is_main:boolean',
             'show_in_menu:boolean',
