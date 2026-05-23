@@ -17,3 +17,4 @@ $this->registerLinkTag(['rel' => 'apple-touch-icon', 'sizes' => '180x180', 'href
 $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'sizes' => '32x32', 'href' => Yii::getAlias('@web/favicon-32x32.png')]);
 $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'sizes' => '16x16', 'href' => Yii::getAlias('@web/favicon-16x16.png')]);
 $this->registerLinkTag(['rel' => 'manifest', 'href' => Yii::getAlias('@web/site.webmanifest')]);
+$this->registerCssFile('https://cdn.jsdelivr.net/npm/flag-icons/css/flag-icons.min.css');

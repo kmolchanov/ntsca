@@ -52,6 +52,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<lang:(ru|en|ky)>' => 'site/index',
+                '<lang:(ru|en|ky)>/<controller>/<action>' => '<controller>/<action>',
             ],
         ],
         'view' => [

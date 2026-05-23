@@ -72,6 +72,40 @@ class SiteController extends Controller
     }
 
     /**
+     * @param $action
+     * @return bool
+     * @throws \yii\web\BadRequestHttpException
+     */
+    public function beforeAction($action)
+    {
+        $lang = Yii::$app->request->get('lang');
+
+        $languages = Yii::$app->params['languages'];
+        $defaultLanguage = Yii::$app->params['defaultLanguage'];
+
+        if (!$lang || !isset($languages[$lang])) {
+            $lang = Yii::$app->request->cookies->getValue('language', $defaultLanguage);
+        }
+
+        if (!isset($languages[$lang])) {
+            $lang = $defaultLanguage;
+        }
+
+        Yii::$app->language = $languages[$lang]['locale'];
+
+        Yii::$app->params['lang'] = $lang;
+        Yii::$app->params['appName'] = $languages[$lang]['appName'];
+
+        Yii::$app->response->cookies->add(new \yii\web\Cookie([
+            'name' => 'language',
+            'value' => $lang,
+            'expire' => time() + 3600 * 24 * 365,
+        ]));
+
+        return parent::beforeAction($action);
+    }
+
+    /**
      * Displays homepage.
      *
      * @return string
