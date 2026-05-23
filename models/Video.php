@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -13,9 +14,11 @@ use yii\helpers\Html;
  * @property string|null $title_ru Название(Русский)
  * @property string|null $title_en Название(Английский)
  * @property string|null $title_ky Название(Кыргызский)
+ * @property string|null $title Название
  * @property string|null $description_ru Описание(Русский)
  * @property string|null $description_en Описание(Английский)
  * @property string|null $description_ky Описание(Кыргызский)
+ * @property string|null $description Описание
  * @property string $url Ссылка
  * @property int $description_position Расположение описания
  * @property string $descriptionPositionString Расположение описания
@@ -90,7 +93,54 @@ class Video extends \yii\db\ActiveRecord
     /**
      * @return string|null
      */
+    public function getTitle()
+    {
+        return $this->getLocalizedAttribute('title');
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->getLocalizedAttribute('description');
+    }
+
+    /**
+     * @param string $attribute
+     * @return string|null
+     */
+    protected function getLocalizedAttribute(string $attribute): ?string
+    {
+        $lang = Yii::$app->params['lang'] ?? Yii::$app->params['defaultLanguage'] ?? 'ru';
+        $field = $attribute . '_' . $lang;
+
+        return $this->{$field} ?: $this->{$attribute . '_ru'};
+    }
+
+    /**
+     * @return string|null
+     */
     public function getYoutubePlayerHtml(): ?string
+    {
+        if (!$this->youtubeEmbedUrl) {
+            return null;
+        }
+
+        return '
+            <div class="ratio ratio-16x9">
+                <iframe
+                    src="' . Html::encode($this->youtubeEmbedUrl) . '"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        ';
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getYoutubeAdminPlayerHtml(): ?string
     {
         if (!$this->youtubeEmbedUrl) {
             return null;
@@ -159,11 +209,14 @@ class Video extends \yii\db\ActiveRecord
     {
         $id = $this->getYoutubeId();
 
+        if (!$id) {
+            return null;
+        }
+
         return 'https://www.youtube.com/embed/' . $id . '?' . http_build_query([
             'rel' => 0,
             'modestbranding' => 1,
             'controls' => 1,
-            'showinfo' => 0,
         ]);
     }
 
