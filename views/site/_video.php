@@ -14,7 +14,7 @@ $player = $model->youtubePlayerHtml;
     <section class="page-video my-5">
 
         <?php if ($title): ?>
-            <h2 class="mb-4"><?= Html::encode($title) ?></h2>
+            <h2 class="text-center mb-4"><?= Html::encode($title) ?></h2>
         <?php endif; ?>
 
         <?php if ($model->description_position == Video::DESCRIPTION_POSITION_TOP && $description): ?>
