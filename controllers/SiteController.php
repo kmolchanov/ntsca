@@ -1,57 +1,155 @@
 <?php
 
+declare(strict_types=1);
+
 namespace app\controllers;
 
 use Yii;
+use app\models\ContactForm;
+use app\models\LoginForm;
+use yii\captcha\CaptchaAction;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
+use yii\base\Security;
+use yii\mail\MailerInterface;
 use yii\web\Controller;
+use yii\web\ErrorAction;
 use yii\web\Response;
 
 class SiteController extends Controller
 {
+    public function __construct(
+        $id,
+        $module,
+        private readonly MailerInterface $mailer,
+        private readonly Security $security,
+        $config = [],
+    ) {
+        parent::__construct($id, $module, $config);
+    }
+
     /**
      * {@inheritdoc}
      */
-    public function actions()
+    public function behaviors(): array
     {
         return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['logout'],
+                'rules' => [
+                    [
+                        'actions' => ['logout'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+            'verbs' => [
+                'class' => VerbFilter::class,
+                'actions' => [
+                    'logout' => ['post'],
+                ],
             ],
         ];
     }
 
-/**
+    /**
+     * {@inheritdoc}
+     */
+    public function actions(): array
+    {
+        return [
+            'error' => [
+                'class' => ErrorAction::class,
+            ],
+            'captcha' => [
+                'class' => CaptchaAction::class,
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'transparent' => true,
+            ],
+        ];
+    }
+
+    /**
      * Displays homepage.
      *
-     * @param $lang
-     * @return string|Response
+     * @return string
      */
-    public function actionIndex($lang = 'ru')
+    public function actionIndex(): string
     {
-        $allowed = ['ru', 'en', 'kg'];
+        return $this->render('index');
+    }
 
-        if (!in_array($lang, $allowed)) {
-            $lang = 'ru';
+    /**
+     * Login action.
+     *
+     * @return Response|string
+     */
+    public function actionLogin(): Response|string
+    {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goHome();
         }
 
-        $langMap = [
-            'ru' => 'ru-RU',
-            'en' => 'en-US',
-            'kg' => 'ky-KG',
-        ];
+        $model = new LoginForm($this->security);
 
-        $appNameMap = [
-            'ru' => 'Школа Нового Мышления в Центральной Азии',
-            'en' => 'New Thinking School of Central Asia',
-            'kg' => 'Борбордук Азиядагы Жаңы Ой Жүгүртүү Мектеби',
-        ];
+        if ($model->load($this->request->post()) && $model->login()) {
+            return $this->goBack();
+        }
 
-        Yii::$app->language = $langMap[$lang];
-        Yii::$app->params['appName'] = $appNameMap[$lang];
-        Yii::$app->params['lang'] = $lang;
+        $model->password = '';
 
-        return $this->render('index', [
-            'lang' => $lang
-        ]);
+        return $this->render('login', ['model' => $model]);
+    }
+
+    /**
+     * Logout action.
+     *
+     * @return Response
+     */
+    public function actionLogout(): Response
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
+    }
+
+    /**
+     * Displays contact page.
+     *
+     * @return Response|string
+     */
+    public function actionContact(): Response|string
+    {
+        $model = new ContactForm();
+
+        $contact = $model->load($this->request->post()) && $model->contact(
+            $this->mailer,
+            Yii::$app->params['adminEmail'],
+            Yii::$app->params['senderEmail'],
+            Yii::$app->params['senderName'],
+        );
+
+        if ($contact) {
+            Yii::$app->session->setFlash(
+                'success',
+                'Thank you for contacting us. We will respond to you as soon as possible.',
+            );
+
+            return $this->refresh();
+        }
+
+        return $this->render('contact', ['model' => $model]);
+    }
+
+    /**
+     * Displays about page.
+     *
+     * @return string
+     */
+    public function actionAbout(): string
+    {
+        return $this->render('about');
     }
 }

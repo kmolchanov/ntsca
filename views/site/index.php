@@ -1,358 +1,207 @@
 <?php
 
 /** @var yii\web\View $this */
-/** @var string $lang */
 
-$this->title = Yii::$app->params['appName'];
+use yii\helpers\Html;
+
+$this->title = 'My Yii Application';
+$this->params['meta_description'] = 'A high-performance PHP framework best for developing web applications. Fast, secure, and professional.';
+$this->params['meta_keywords'] = 'yii, yii2, php, framework, web application, high-performance';
 ?>
+<div class="site-index">
 
-<div class="site-section courses-title" id="courses-section">
-    <div class="container">
-        <div class="row mb-5 justify-content-center">
-            <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="">
-                <h2 class="section-title">Courses</h2>
+    <!-- Hero banner with Yii gradient -->
+    <div class="hero-banner text-white rounded-4 p-5 mb-4 position-relative overflow-hidden">
+        <?= Html::img(Yii::getAlias('@web/images/yii3_full_white_for_dark.svg'), [
+            'alt' => '',
+            'class' => 'd-none d-lg-block position-absolute hero-logo',
+        ]) ?>
+        <div class="position-relative">
+            <h1 class="display-5 fw-bold mb-3">Build with Yii Framework</h1>
+            <p class="lead opacity-75 mb-4 hero-lead">
+                A high-performance PHP framework best for developing web applications.
+                Fast, secure, and professional.
+            </p>
+            <div class="d-flex gap-2 flex-wrap">
+                <?= Html::a(
+                    'Get Started',
+                    'https://www.yiiframework.com/doc/guide/2.0/en/start-installation',
+                    [
+                        'class' => 'btn btn-light btn-lg fw-semibold px-4',
+                        'rel' => 'noopener',
+                        'target' => '_blank',
+                    ],
+                ) ?>
+                <?= Html::a(
+                    'API Reference',
+                    'https://www.yiiframework.com/doc/api/2.0',
+                    [
+                        'class' => 'btn btn-outline-light btn-lg px-4',
+                        'rel' => 'noopener',
+                        'target' => '_blank',
+                    ],
+                ) ?>
             </div>
         </div>
     </div>
-</div>
-<div class="site-section courses-entry-wrap"  data-aos="fade-up" data-aos-delay="100">
-    <div class="container">
-        <div class="row">
-            <div class="owl-carousel col-12 nonloop-block-14">
-                <div class="course bg-white h-100 align-self-stretch">
-                    <figure class="m-0">
-                        <a href="course-single.html"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
-                    </figure>
-                    <div class="course-inner-text py-4 px-4">
-                        <span class="course-price">$20</span>
-                        <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                        <h3><a href="#">Study Law of Physics</a></h3>
-                        <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-                    </div>
-                    <div class="d-flex border-top stats">
-                        <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-                        <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-                    </div>
-                </div>
-                <div class="course bg-white h-100 align-self-stretch">
-                    <figure class="m-0">
-                        <a href="course-single.html"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
-                    </figure>
-                    <div class="course-inner-text py-4 px-4">
-                        <span class="course-price">$99</span>
-                        <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                        <h3><a href="#">Logo Design Course</a></h3>
-                        <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-                    </div>
-                    <div class="d-flex border-top stats">
-                        <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-                        <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-                    </div>
-                </div>
-                <div class="course bg-white h-100 align-self-stretch">
-                    <figure class="m-0">
-                        <a href="course-single.html"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
-                    </figure>
-                    <div class="course-inner-text py-4 px-4">
-                        <span class="course-price">$99</span>
-                        <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                        <h3><a href="#">JS Programming Language</a></h3>
-                        <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-                    </div>
-                    <div class="d-flex border-top stats">
-                        <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-                        <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-                    </div>
-                </div>
-                <div class="course bg-white h-100 align-self-stretch">
-                    <figure class="m-0">
-                        <a href="course-single.html"><img src="images/img_4.jpg" alt="Image" class="img-fluid"></a>
-                    </figure>
-                    <div class="course-inner-text py-4 px-4">
-                        <span class="course-price">$20</span>
-                        <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                        <h3><a href="#">Study Law of Physics</a></h3>
-                        <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-                    </div>
-                    <div class="d-flex border-top stats">
-                        <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-                        <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-                    </div>
-                </div>
-                <div class="course bg-white h-100 align-self-stretch">
-                    <figure class="m-0">
-                        <a href="course-single.html"><img src="images/img_5.jpg" alt="Image" class="img-fluid"></a>
-                    </figure>
-                    <div class="course-inner-text py-4 px-4">
-                        <span class="course-price">$99</span>
-                        <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                        <h3><a href="#">Logo Design Course</a></h3>
-                        <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-                    </div>
-                    <div class="d-flex border-top stats">
-                        <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-                        <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-                    </div>
-                </div>
-                <div class="course bg-white h-100 align-self-stretch">
-                    <figure class="m-0">
-                        <a href="course-single.html"><img src="images/img_6.jpg" alt="Image" class="img-fluid"></a>
-                    </figure>
-                    <div class="course-inner-text py-4 px-4">
-                        <span class="course-price">$99</span>
-                        <div class="meta"><span class="icon-clock-o"></span>4 Lessons / 12 week</div>
-                        <h3><a href="#">JS Programming Language</a></h3>
-                        <p>Lorem ipsum dolor sit amet ipsa nulla adipisicing elit. </p>
-                    </div>
-                    <div class="d-flex border-top stats">
-                        <div class="py-3 px-4"><span class="icon-users"></span> 2,193 students</div>
-                        <div class="py-3 px-4 w-25 ml-auto border-left"><span class="icon-chat"></span> 2</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-7 text-center">
-                <button class="customPrevBtn btn btn-primary m-1">Prev</button>
-                <button class="customNextBtn btn btn-primary m-1">Next</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="site-section" id="programs-section">
-    <div class="container">
-        <div class="row mb-5 justify-content-center">
-            <div class="col-lg-7 text-center"  data-aos="fade-up" data-aos-delay="">
-                <h2 class="section-title">Our Programs</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!</p>
-            </div>
-        </div>
-        <div class="row mb-5 align-items-center">
-            <div class="col-lg-7 mb-5" data-aos="fade-up" data-aos-delay="100">
-                <img src="images/undraw_youtube_tutorial.svg" alt="Image" class="img-fluid">
-            </div>
-            <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
-                <h2 class="text-black mb-4">We Are Excellent In Education</h2>
-                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
-                <div class="d-flex align-items-center custom-icon-wrap mb-3">
-                    <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
-                    <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
-                </div>
-                <div class="d-flex align-items-center custom-icon-wrap">
-                    <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
-                    <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-5 align-items-center">
-            <div class="col-lg-7 mb-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
-                <img src="images/undraw_teaching.svg" alt="Image" class="img-fluid">
-            </div>
-            <div class="col-lg-4 mr-auto order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
-                <h2 class="text-black mb-4">Strive for Excellent</h2>
-                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
-                <div class="d-flex align-items-center custom-icon-wrap mb-3">
-                    <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
-                    <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
-                </div>
-                <div class="d-flex align-items-center custom-icon-wrap">
-                    <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
-                    <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-5 align-items-center">
-            <div class="col-lg-7 mb-5" data-aos="fade-up" data-aos-delay="100">
-                <img src="images/undraw_teacher.svg" alt="Image" class="img-fluid">
-            </div>
-            <div class="col-lg-4 ml-auto" data-aos="fade-up" data-aos-delay="200">
-                <h2 class="text-black mb-4">Education is life</h2>
-                <p class="mb-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem maxime nam porro possimus fugiat quo molestiae illo.</p>
-                <div class="d-flex align-items-center custom-icon-wrap mb-3">
-                    <span class="custom-icon-inner mr-3"><span class="icon icon-graduation-cap"></span></span>
-                    <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
-                </div>
-                <div class="d-flex align-items-center custom-icon-wrap">
-                    <span class="custom-icon-inner mr-3"><span class="icon icon-university"></span></span>
-                    <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="site-section" id="teachers-section">
-    <div class="container">
-        <div class="row mb-5 justify-content-center">
-            <div class="col-lg-7 mb-5 text-center"  data-aos="fade-up" data-aos-delay="">
-                <h2 class="section-title">Our Teachers</h2>
-                <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam repellat aut neque! Doloribus sunt non aut reiciendis, vel recusandae obcaecati hic dicta repudiandae in quas quibusdam ullam, illum sed veniam!</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="teacher text-center">
-                    <img src="images/person_1.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
-                    <div class="py-2">
-                        <h3 class="text-black">Benjamin Stone</h3>
-                        <p class="position">Physics Teacher</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora, adipisci at provident.</p>
+    <!-- Extensions grid -->
+    <div class="row g-3">
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 extension-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="extension-icon" aria-hidden="true">&#128270;</span>
+                        <h3 class="h6 fw-bold mb-0 ms-2">yii2-debug</h3>
                     </div>
+                    <p class="text-body-secondary small mb-0">
+                        Debug toolbar and debugger for Yii2. Inspect logs, database queries,
+                        request data, and application performance in real time.
+                    </p>
                 </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="teacher text-center">
-                    <img src="images/person_2.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
-                    <div class="py-2">
-                        <h3 class="text-black">Katleen Stone</h3>
-                        <p class="position">Physics Teacher</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora, adipisci at provident.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                <div class="teacher text-center">
-                    <img src="images/person_3.jpg" alt="Image" class="img-fluid w-50 rounded-circle mx-auto mb-4">
-                    <div class="py-2">
-                        <h3 class="text-black">Sadie White</h3>
-                        <p class="position">Physics Teacher</p>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro eius suscipit delectus enim iusto tempora, adipisci at provident.</p>
-                    </div>
+                <div class="card-footer bg-transparent border-0 pt-0">
+                    <?= Html::a(
+                        'Learn more &raquo;',
+                        'https://www.yiiframework.com/extension/yiisoft/yii2-debug',
+                        [
+                            'class' => 'btn btn-sm btn-outline-secondary',
+                            'rel' => 'noopener',
+                            'target' => '_blank',
+                        ],
+                    ) ?>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-<div class="site-section bg-image overlay" style="background-image: url('images/hero_1.jpg');">
-    <div class="container">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-md-8 text-center testimony">
-                <img src="images/person_4.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-                <h3 class="mb-4">Jerome Jensen</h3>
-                <blockquote>
-                    <p>&ldquo; Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum rem soluta sit eius necessitatibus voluptate excepturi beatae ad eveniet sapiente impedit quae modi quo provident odit molestias! Rem reprehenderit assumenda &rdquo;</p>
-                </blockquote>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="site-section pb-0">
-    <div class="future-blobs">
-        <div class="blob_2">
-            <img src="images/blob_2.svg" alt="Image">
-        </div>
-        <div class="blob_1">
-            <img src="images/blob_1.svg" alt="Image">
-        </div>
-    </div>
-    <div class="container">
-        <div class="row mb-5 justify-content-center" data-aos="fade-up" data-aos-delay="">
-            <div class="col-lg-7 text-center">
-                <h2 class="section-title">Why Choose Us</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 ml-auto align-self-start"  data-aos="fade-up" data-aos-delay="100">
-                <div class="p-4 rounded bg-white why-choose-us-box">
-                    <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-                        <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
-                        <div><h3 class="m-0">22,931 Yearly Graduates</h3></div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 extension-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="extension-icon" aria-hidden="true">&#9881;</span>
+                        <h3 class="h6 fw-bold mb-0 ms-2">yii2-gii</h3>
                     </div>
-                    <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-                        <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-university"></span></span></div>
-                        <div><h3 class="m-0">150 Universities Worldwide</h3></div>
-                    </div>
-                    <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-                        <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
-                        <div><h3 class="m-0">Top Professionals in The World</h3></div>
-                    </div>
-                    <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-                        <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-university"></span></span></div>
-                        <div><h3 class="m-0">Expand Your Knowledge</h3></div>
-                    </div>
-                    <div class="d-flex align-items-center custom-icon-wrap custom-icon-light mb-3">
-                        <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-graduation-cap"></span></span></div>
-                        <div><h3 class="m-0">Best Online Teaching Assistant Courses</h3></div>
-                    </div>
-                    <div class="d-flex align-items-center custom-icon-wrap custom-icon-light">
-                        <div class="mr-3"><span class="custom-icon-inner"><span class="icon icon-university"></span></span></div>
-                        <div><h3 class="m-0">Best Teachers</h3></div>
-                    </div>
+                    <p class="text-body-secondary small mb-0">
+                        Automatic code generator for models, controllers, CRUD, forms, and modules.
+                        Boost your productivity with scaffolding.
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-0 pt-0">
+                    <?= Html::a(
+                        'Learn more &raquo;',
+                        'https://www.yiiframework.com/extension/yiisoft/yii2-gii',
+                        [
+                            'class' => 'btn btn-sm btn-outline-secondary',
+                            'rel' => 'noopener',
+                            'target' => '_blank',
+                        ],
+                    ) ?>
                 </div>
             </div>
-            <div class="col-lg-7 align-self-end"  data-aos="fade-left" data-aos-delay="200">
-                <img src="images/person_transparent.png" alt="Image" class="img-fluid">
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 extension-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="extension-icon" aria-hidden="true">&#128203;</span>
+                        <h3 class="h6 fw-bold mb-0 ms-2">yii2-queue</h3>
+                    </div>
+                    <p class="text-body-secondary small mb-0">
+                        Asynchronous job queue with support for DB, Redis, AMQP, Beanstalk,
+                        and SQS drivers. Run background tasks with ease.
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-0 pt-0">
+                    <?= Html::a(
+                        'Learn more &raquo;',
+                        'https://www.yiiframework.com/extension/yiisoft/yii2-queue',
+                        [
+                            'class' => 'btn btn-sm btn-outline-secondary',
+                            'rel' => 'noopener',
+                            'target' => '_blank',
+                        ],
+                    ) ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 extension-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="extension-icon" aria-hidden="true">&#9889;</span>
+                        <h3 class="h6 fw-bold mb-0 ms-2">yii2-redis</h3>
+                    </div>
+                    <p class="text-body-secondary small mb-0">
+                        Redis integration providing cache, session, and ActiveRecord support.
+                        Leverage in-memory storage for blazing-fast data access.
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-0 pt-0">
+                    <?= Html::a(
+                        'Learn more &raquo;',
+                        'https://www.yiiframework.com/extension/yiisoft/yii2-redis',
+                        [
+                            'class' => 'btn btn-sm btn-outline-secondary',
+                            'rel' => 'noopener',
+                            'target' => '_blank',
+                        ],
+                    ) ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 extension-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="extension-icon" aria-hidden="true">&#128269;</span>
+                        <h3 class="h6 fw-bold mb-0 ms-2">yii2-elasticsearch</h3>
+                    </div>
+                    <p class="text-body-secondary small mb-0">
+                        Elasticsearch integration with ActiveRecord and query builder.
+                        Add powerful full-text search capabilities to your application.
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-0 pt-0">
+                    <?= Html::a(
+                        'Learn more &raquo;',
+                        'https://www.yiiframework.com/extension/yiisoft/yii2-elasticsearch',
+                        [
+                            'class' => 'btn btn-sm btn-outline-secondary',
+                            'rel' => 'noopener',
+                            'target' => '_blank',
+                        ],
+                    ) ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 extension-card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="extension-icon" aria-hidden="true">&#9993;</span>
+                        <h3 class="h6 fw-bold mb-0 ms-2">yii2-symfonymailer</h3>
+                    </div>
+                    <p class="text-body-secondary small mb-0">
+                        Email sending integration powered by Symfony Mailer.
+                        Compose and deliver rich HTML emails with attachments and templates.
+                    </p>
+                </div>
+                <div class="card-footer bg-transparent border-0 pt-0">
+                    <?= Html::a(
+                        'Learn more &raquo;',
+                        'https://github.com/yiisoft/yii2-symfonymailer',
+                        [
+                            'class' => 'btn btn-sm btn-outline-secondary',
+                            'rel' => 'noopener',
+                            'target' => '_blank',
+                        ],
+                    ) ?>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
-<div class="site-section bg-light" id="contact-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-7">
-                <h2 class="section-title mb-3">Message Us</h2>
-                <p class="mb-5">Natus totam voluptatibus animi aspernatur ducimus quas obcaecati mollitia quibusdam temporibus culpa dolore molestias blanditiis consequuntur sunt nisi.</p>
-                <form method="post" data-aos="fade">
-                    <div class="form-group row">
-                        <div class="col-md-6 mb-3 mb-lg-0">
-                            <input type="text" class="form-control" placeholder="First name">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" placeholder="Last name">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <input type="text" class="form-control" placeholder="Subject">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <input type="email" class="form-control" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <textarea class="form-control" id="" cols="30" rows="10" placeholder="Write your message here."></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <input type="submit" class="btn btn-primary py-3 px-5 btn-block btn-pill" value="Send Message">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<footer class="footer-section bg-white">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h3>About OneSchool</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat dicta.</p>
-            </div>
-            <div class="col-md-3 ml-auto">
-                <h3>Links</h3>
-                <ul class="list-unstyled footer-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Courses</a></li>
-                    <li><a href="#">Programs</a></li>
-                    <li><a href="#">Teachers</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h3>Subscribe</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt incidunt iure iusto architecto? Numquam, natus?</p>
-                <form action="#" class="footer-subscribe">
-                    <div class="d-flex mb-5">
-                        <input type="text" class="form-control rounded-0" placeholder="Email">
-                        <input type="submit" class="btn btn-primary rounded-0" value="Subscribe">
-                    </div>
-                </form>
-            </div>
-        </div>
-        <?= $this->render("sections/copyright/{$lang}") ?>
-    </div>
-</footer>

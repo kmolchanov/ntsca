@@ -1,76 +1,39 @@
 <?php
 
-/* @var $this \yii\web\View */
-/* @var $content string */
+declare(strict_types=1);
 
-use yii\helpers\Url;
+/** @var yii\web\View $this */
+/** @var string $content */
+
 use app\widgets\Alert;
+use yii\bootstrap5\Breadcrumbs;
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use app\assets\AppAsset;
 
-AppAsset::register($this);
+$this->render('_head');
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
-<html lang="<?= Yii::$app->language ?>">
+<html lang="<?= Yii::$app->language ?>" class="h-100" data-bs-theme="light">
 <head>
-    <meta charset="<?= Yii::$app->charset ?>">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $this->registerLinkTag(['rel' => 'apple-touch-icon', 'sizes' => '180x180', 'href' => Url::to(['/apple-touch-icon.png'])]); ?>
-    <?php $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'sizes' => '32x32', 'href' => Url::to(['/favicon-32x32.png'])]); ?>
-    <?php $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'sizes' => '16x16', 'href' => Url::to(['/favicon-16x16.png'])]); ?>
-    <?php $this->registerLinkTag(['rel' => 'manifest', 'href' => Url::to(['/site.webmanifest'])]); ?>
-    <?php $this->registerCsrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?></title>
     <?php $this->head() ?>
+    <title><?= Html::encode($this->title) ?></title>
 </head>
-<body>
+<body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
 
-<div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => Yii::$app->name,
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar-default navbar-inverse navbar-fixed-top',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Вход', 'url' => ['/user/login/'], 'visible' => Yii::$app->user->isGuest],
-            ['label' => !Yii::$app->user->isGuest ? Yii::$app->user->identity->username : '', 'items' => [
-                ['label' => 'Панель управления', 'url' => ['/admin'], 'visible' => Yii::$app->user->can('admin-access')],
-                ['label' => 'Аккаунт', 'url' => ['/user/settings/account'], 'visible' => !Yii::$app->user->isGuest],
-                ['label' => 'Выход',
-                    'url' => ['/user/logout'],
-                    'linkOptions' => ['data-method' => 'post']
-                ],
-            ], 'visible' => !Yii::$app->user->isGuest],
-        ],
-    ]);
-    NavBar::end();
-    ?>
+<?= $this->render('_header') ?>
 
+<main id="main" class="flex-grow-1" role="main">
     <div class="container">
-        <?= Breadcrumbs::widget([
-            'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+        <?php if (!empty($this->params['breadcrumbs'])): ?>
+            <?= Breadcrumbs::widget(['links' => $this->params['breadcrumbs']]) ?>
+        <?php endif ?>
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
-</div>
+</main>
 
-<footer class="footer">
-    <div class="container">
-        <p class="pull-right">&copy; New Thinking School of Central Asia <?= date('Y') ?></p>
-    </div>
-</footer>
+<?= $this->render('_footer') ?>
 
 <?php $this->endBody() ?>
 </body>
