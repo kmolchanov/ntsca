@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\ArrayHelper;
 
@@ -10,6 +11,7 @@ use yii\helpers\ArrayHelper;
  *
  * @property int $id ID
  * @property string|null $title_ru Название(Русский)
+ * @property string|null $title Название
  * @property int|null $created_at Создана
  * @property int|null $updated_at Обновлена
  *
@@ -72,7 +74,27 @@ class Gallery extends \yii\db\ActiveRecord
         return parent::beforeDelete();
     }
 
-        /**
+    /**
+     * @property string|null $title Название
+     */
+    public function getTitle()
+    {
+        return $this->getLocalizedAttribute('title');
+    }
+
+    /**
+     * @param string $attribute
+     * @return string|null
+     */
+    protected function getLocalizedAttribute(string $attribute): ?string
+    {
+        $lang = Yii::$app->params['lang'] ?? Yii::$app->params['defaultLanguage'] ?? 'ru';
+        $field = $attribute . '_' . $lang;
+
+        return $this->{$field} ?: $this->{$attribute . '_ru'};
+    }
+
+    /**
      * @return array
      */
     public static function getList()
@@ -91,7 +113,7 @@ class Gallery extends \yii\db\ActiveRecord
      */
     public function getItems()
     {
-        return $this->hasMany(GalleryItem::className(), ['gallery_id' => 'id']);
+        return $this->hasMany(GalleryItem::className(), ['gallery_id' => 'id'])->sorted();
     }
 
     /**
