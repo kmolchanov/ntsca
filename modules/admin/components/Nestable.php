@@ -1,8 +1,8 @@
 <?php
 
-namespace app\components;
+namespace app\modules\admin\components;
 
-use app\assets\NestableAsset;
+use app\modules\admin\assets\NestableAsset;
 use klisl\nestable\Nestable as BaseNestable;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;

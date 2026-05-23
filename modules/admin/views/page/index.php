@@ -1,6 +1,6 @@
 <?php
 
-use app\components\Nestable;
+use app\modules\admin\components\Nestable;
 use yii\helpers\Html;
 use yii\helpers\Url;
 

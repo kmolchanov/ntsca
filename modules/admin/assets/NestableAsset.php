@@ -6,7 +6,7 @@
  * @version 1.0
  */
 
-namespace app\assets;
+namespace app\modules\admin\assets;
 
 /**
  * Nestable bundle for \klisl\nestable\Sortable
@@ -14,7 +14,10 @@ namespace app\assets;
  * @author Arno Slatius <a.slatius@gmail.com>
  * @since 1.0
  */
-class NestableAsset extends \kartik\base\AssetBundle {
+class NestableAsset extends \kartik\base\AssetBundle
+{
+    public $sourcePath = '@app/modules/admin/assets';
+    public $baseUrl = '@web';
 
     public function init() {
         $this->setupAssets('js', ['js/jquery.nestable']);
