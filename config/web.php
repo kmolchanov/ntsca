@@ -10,7 +10,6 @@ $config = [
     'name' => 'NTSCA',
     'language' => 'ru-RU',
     'timeZone' => 'Asia/Bishkek',
-    'layout' => 'school-template',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
