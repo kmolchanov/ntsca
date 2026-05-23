@@ -17,6 +17,7 @@
         "php": ">=8.0",
         "yiisoft/yii2": "~2.0.14",
         "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-bootstrap5": "^2.0",
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "dektrium/yii2-user": "0.9.x-dev",
         "dektrium/yii2-rbac": "1.0.x-dev",
