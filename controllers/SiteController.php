@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace app\controllers;
 
+use app\models\Page;
 use Yii;
 use app\models\ContactForm;
 use app\models\LoginForm;
@@ -14,6 +15,7 @@ use yii\base\Security;
 use yii\mail\MailerInterface;
 use yii\web\Controller;
 use yii\web\ErrorAction;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 class SiteController extends Controller
@@ -106,13 +108,29 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Displays page.
      *
+     * @param $lang
+     * @param $slug
      * @return string
      */
-    public function actionIndex(): string
+    public function actionIndex($lang = null, $slug = null)
     {
-        return $this->render('index');
+        $query = Page::find()->where(['is_active' => true]);
+
+        if ($slug === null) {
+            $page = $query->andWhere(['is_main' => true])->one();
+        } else {
+            $page = $query->andWhere(['slug' => $slug])->one();
+        }
+
+        if (!$page) {
+            throw new NotFoundHttpException('Страница не найдена.');
+        }
+
+        return $this->render('index', [
+            'model' => $page,
+        ]);
     }
 
     /**

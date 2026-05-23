@@ -53,7 +53,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '<lang:(ru|en|ky)>' => 'site/index',
-                '<lang:(ru|en|ky)>/<controller>/<action>' => '<controller>/<action>',
+                '<lang:(ru|en|ky)>/<slug:[\w\-]+>' => 'site/index',
             ],
         ],
         'view' => [

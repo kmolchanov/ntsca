@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php if ($model->youtubePlayerHtml): ?>
         <div class="text-center" style="margin-bottom: 40px;">
             <div style="max-width: 700px; margin: 0 auto;">
-                <?= $model->youtubePlayerHtml ?>
+                <?= $model->youtubeAdminPlayerHtml ?>
             </div>
         </div>
     <?php endif; ?>
