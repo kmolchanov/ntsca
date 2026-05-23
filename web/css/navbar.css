@@ -278,3 +278,78 @@ body.has-fixed-navbar {
     backdrop-filter: blur(10px);
     padding: 0.8rem 0;
 }
+
+/* Принудительное раскрытие бесконечной вложенности на ПК при наведении */
+@media (min-width: 992px) {
+    /* Пакет Kartik использует классы .dropdown-submenu или стандартную вложенность.
+       Этот селектор заставляет ЛЮБОЕ подменю, находящееся внутри открытого дропдауна,
+       показываться, когда мы наводим мышь на его родительский элемент (li или div).
+    */
+    .navbar-nav .dropdown-menu .dropdown-submenu:hover > .dropdown-menu,
+    .navbar-nav .dropdown-menu .dropdown:hover > .dropdown-menu,
+    .navbar-nav .dropdown-menu li:hover > .dropdown-menu {
+        display: block !important;
+        position: absolute;
+        left: 100%; /* Сдвиг вправо */
+        top: 0;
+        margin-top: -0.5rem; /* Выравнивание по высоте */
+    }
+
+    /* Корректируем отображение стрелочек для всех уровней глубже второго */
+    .navbar-nav .dropdown-menu .dropdown-toggle::after {
+        border-top: 0.3em solid transparent !important;
+        border-right: 0 !important;
+        border-bottom: 0.3em solid transparent !important;
+        border-left: 0.3em solid !important;
+        float: right;
+        margin-top: 0.5em;
+    }
+}
+/* ==========================================================================
+   Кастомизация выпадающего меню под стиль Navbar (Dark Theme)
+   ========================================================================== */
+
+/* 1. Задаем фон и рамки для ВСЕХ уровней выпадающих списков */
+.navbar-nav .dropdown-menu {
+    background-color: #bf5a36 !important; /* Тот же цвет, что и .bg-dark в Bootstrap 5 */
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5) !important;
+}
+
+/* 2. Цвет текста для обычных пунктов меню */
+.navbar-nav .dropdown-menu .dropdown-item {
+    color: rgba(255, 255, 255, 0.75) !important;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* 3. Стиль пунктов меню при наведении (Hover) и в активном состоянии */
+.navbar-nav .dropdown-menu .dropdown-item:hover,
+.navbar-nav .dropdown-menu .dropdown-item:focus,
+.navbar-nav .dropdown-menu .dropdown-submenu:hover > .dropdown-item {
+    color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.1) !important; /* Легкое полупрозрачное высветление */
+}
+
+/* 4. Если пункт меню активен (текущая страница) */
+.navbar-nav .dropdown-menu .dropdown-item.active {
+    color: #fff !important;
+    background-color: #5e9a5e !important; /* Стандартный синий цвет Bootstrap для active, можно заменить на свой */
+}
+
+/* 5. Корректируем цвет стрелочек (треугольников) для вложенных меню */
+.navbar-nav .dropdown-menu .dropdown-toggle::after {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+.navbar-nav .dropdown-menu .dropdown-submenu:hover > .dropdown-toggle::after {
+    color: #fff !important;
+}
+
+/* --- Дополнительно для мобильной версии --- */
+@media (max-width: 991.98px) {
+    /* Убираем рамки и тени на мобильных, так как там меню идет сплошным деревом */
+    .navbar-collapse .dropdown-menu {
+        border: none !important;
+        box-shadow: none !important;
+        background-color: transparent !important; /* На мобильных лучше оставить прозрачным, чтобы не наслаивать темное на темное */
+    }
+}

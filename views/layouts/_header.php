@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 /** @var yii\web\View $this */
 
+use kartik\bs5dropdown\Dropdown;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
 use yii\helpers\Html;
@@ -20,6 +21,40 @@ $items = [
     [
         'label' => 'Contact',
         'url' => ['/site/contact'],
+        'items' => [
+            [
+                'label' => 'About',
+                'url' => ['/site/about'],
+                'items' => [
+                    [
+                        'label' => 'About',
+                        'url' => ['/site/about'],
+                        'items' => [
+                            [
+                                'label' => 'About',
+                                'url' => ['/site/about'],
+                                'items' => [
+                                    [
+                                        'label' => 'About',
+                                        'url' => ['/site/about'],
+                                    ],
+                                ]
+                            ],
+                        ]
+                    ],
+                    [
+                        'label' => 'About',
+                        'url' => ['/site/about'],
+                        'items' => [
+                            [
+                                'label' => 'About',
+                                'url' => ['/site/about'],
+                            ],
+                        ]
+                    ],
+                ]
+            ],
+        ]
     ],
     [
         'label' => 'Login',
@@ -51,7 +86,9 @@ $items = [
         [
             'options' => ['class' => 'navbar-nav me-auto'],
             'encodeLabels' => false,
+            'dropdownClass' => Dropdown::class,
             'items' => $items,
+            'activateParents' => false,
         ],
     ) ?>
     <?= Html::button(
