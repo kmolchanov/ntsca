@@ -27,6 +27,7 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/site.css',
+        'css/navbar.css',
     ];
     public $js = [
         'js/color-mode.js',

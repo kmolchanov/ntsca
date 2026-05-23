@@ -39,13 +39,14 @@ $items = [
 
 ?>
 <header id="header">
-    <?php NavBar::begin(
-        [
-            'brandLabel' => Yii::$app->name,
-            'brandUrl' => Yii::$app->homeUrl,
-            'options' => ['class' => 'navbar-expand-md navbar-dark bg-dark fixed-top']
-        ],
-    ) ?>
+    <?php NavBar::begin([
+        'brandLabel' => Html::img('/images/logo.png', [
+                'alt' => '',
+                'class' => 'header-logo'
+            ]),
+        'brandUrl' => Yii::$app->homeUrl,
+        'options' => ['class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top'],
+    ]) ?>
     <?= Nav::widget(
         [
             'options' => ['class' => 'navbar-nav me-auto'],
