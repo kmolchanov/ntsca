@@ -3,13 +3,13 @@
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-use app\widgets\Alert;
-use yii\helpers\Html;
+use app\modules\admin\assets\ModuleAsset;
+use app\modules\admin\widgets\Alert;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
-use yii\widgets\Breadcrumbs;
-use app\modules\admin\assets\ModuleAsset;
+use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\Breadcrumbs;
 
 ModuleAsset::register($this);
 ?>
