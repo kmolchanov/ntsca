@@ -28,6 +28,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/navbar.css',
+        'css/flag-icons.min.css',
     ];
     public $js = [
         'js/color-mode.js',
