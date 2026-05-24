@@ -13,7 +13,6 @@ use yii\behaviors\TimestampBehavior;
  * @property int $id ID
  * @property int $gallery_id ID Галереи
  * @property string|null $title_ru Название(Русский)
- * @property string|null $title Название
  * @property int $position Позиция
  * @property int|null $created_at Создана
  * @property int|null $updated_at Обновлена
@@ -102,26 +101,6 @@ class GalleryItem extends \yii\db\ActiveRecord
         $this->removeImages();
 
         return parent::beforeDelete();
-    }
-
-    /**
-     * @property string|null $title Название
-     */
-    public function getTitle()
-    {
-        return $this->getLocalizedAttribute('title');
-    }
-
-    /**
-     * @param string $attribute
-     * @return string|null
-     */
-    protected function getLocalizedAttribute(string $attribute): ?string
-    {
-        $lang = Yii::$app->params['lang'] ?? Yii::$app->params['defaultLanguage'] ?? 'ru';
-        $field = $attribute . '_' . $lang;
-
-        return $this->{$field} ?: $this->{$attribute . '_ru'};
     }
 
     /**
