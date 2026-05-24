@@ -337,3 +337,36 @@ a.desc:after {
 .gallery-scroll img {
     width: 260px;
 }
+
+.gallery-swiper-button {
+    z-index: 10;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: #009cce;
+    color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 26px;
+    padding: 0;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .2);
+    opacity: .9;
+}
+
+.gallery-swiper-button:hover {
+    opacity: 1;
+    background: #311e7b;
+}
+
+.gallery-swiper-prev {
+    left: -22px;
+}
+
+.gallery-swiper-next {
+    right: -22px;
+}
