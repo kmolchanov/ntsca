@@ -370,3 +370,88 @@ a.desc:after {
 .gallery-swiper-next {
     right: -22px;
 }
+
+.floating-contacts {
+    position: fixed;
+    right: 24px;
+    bottom: 32px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.floating-contact {
+    position: relative;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    color: #fff;
+    text-align: center;
+    line-height: 55px;
+    font-size: 32px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .25);
+    text-decoration: none;
+}
+
+.floating-contact:hover {
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.floating-contact-instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.floating-contact-whatsapp {
+    background: #00a884;
+}
+
+.floating-contact-phone {
+    background: #009cce;
+}
+
+.floating-contact::before,
+.floating-contact::after {
+    content: "";
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    animation: floating-contact-pulse 1.6s linear infinite;
+    opacity: 0;
+}
+
+.floating-contact-instagram::before,
+.floating-contact-instagram::after {
+    border: 1px solid #cc2366;
+}
+
+.floating-contact-whatsapp::before,
+.floating-contact-whatsapp::after {
+    border: 1px solid #00a884;
+}
+
+.floating-contact-phone::before,
+.floating-contact-phone::after {
+    border: 1px solid #009cce;
+}
+
+.floating-contact::after {
+    animation-delay: .5s;
+}
+
+@keyframes floating-contact-pulse {
+    0% {
+        transform: scale(.6);
+        opacity: 0;
+    }
+
+    50% {
+        opacity: .7;
+    }
+
+    100% {
+        transform: scale(1.25);
+        opacity: 0;
+    }
+}

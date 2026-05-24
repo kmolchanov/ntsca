@@ -22,4 +22,9 @@ return [
         ],
     ],
     'defaultLanguage' => 'ru',
+    'contacts' => [
+        'phone' => '996558915002',
+        'instagram' => 'https://www.instagram.com/newthinkingschool.kg/',
+        'whatsapp' => '996558915002',
+    ],
 ];

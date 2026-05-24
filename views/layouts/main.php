@@ -35,6 +35,7 @@ $this->render('_head');
 
 <?= $this->render('_footer') ?>
 
+<?= $this->render('_floating_contacts') ?>
 <?php $this->endBody() ?>
 </body>
 </html>

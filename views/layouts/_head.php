@@ -5,8 +5,10 @@ declare(strict_types=1);
 /** @var yii\web\View $this */
 
 use app\assets\AppAsset;
+use app\assets\FontAwesomeAsset;
 
 AppAsset::register($this);
+FontAwesomeAsset::register($this);
 
 $this->registerCsrfMetaTags();
 $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
