@@ -24,6 +24,22 @@ class PageQuery extends \yii\db\ActiveQuery
     /**
      * @return PageQuery
      */
+    public function active()
+    {
+        return $this->andWhere(['is_active' => Page::IS_YES]);
+    }
+
+    /**
+     * @return PageQuery
+     */
+    public function visibleInMenu()
+    {
+        return $this->andWhere(['show_in_menu' => Page::IS_YES]);
+    }
+
+    /**
+     * @return PageQuery
+     */
     public function sortedByTree()
     {
         return $this->orderBy(Page::tableName().'.lft');

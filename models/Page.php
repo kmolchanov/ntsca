@@ -3,6 +3,7 @@
 namespace app\models;
 
 use creocoder\nestedsets\NestedSetsBehavior;
+use Exception;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\Html;
@@ -273,25 +274,29 @@ class Page extends \yii\db\ActiveRecord
 
     public static function getMenuItems(): array
     {
-        $roots = self::find()
-            ->roots()
-            ->sortedByTree()
-            ->all();
+        $rootPage = Page::find()->roots()->one();
+
+        if ($rootPage === null) {
+            $rootPage = new Page();
+            $rootPage->slug = 'root-service-page-non-editable';
+            $rootPage->title_ru = 'Root';
+            $rootPage->title_en = 'Root';
+            $rootPage->title_ky = 'Root';
+            $rootPage->menu_title_ru = 'Root';
+            $rootPage->menu_title_en = 'Root';
+            $rootPage->menu_title_ky = 'Root';
+
+            if (!$rootPage->makeRoot()) {
+                throw new Exception('Базовая страница отсутствует.');
+            }
+        }
 
         $items = [];
 
-        foreach ($roots as $root) {
-            $children = $root->children()
-                ->andWhere([
-                    'is_active' => self::IS_YES,
-                    'show_in_menu' => self::IS_YES,
-                ])
-                ->orderBy(['lft' => SORT_ASC])
-                ->all();
+        $children = $rootPage->children()->sortedByTree()->active()->visibleInMenu()->all();
 
-            foreach ($children as $page) {
-                $items[] = self::buildMenuItem($page);
-            }
+        foreach ($children as $page) {
+            $items[] = self::buildMenuItem($page);
         }
 
         $lang = Yii::$app->params['lang'] ?? Yii::$app->params['defaultLanguage'] ?? 'ru';
@@ -319,13 +324,7 @@ class Page extends \yii\db\ActiveRecord
             'url' => $page->url,
         ];
 
-        $children = $page->children(1)
-            ->andWhere([
-                'is_active' => self::IS_YES,
-                'show_in_menu' => self::IS_YES,
-            ])
-            ->orderBy(['lft' => SORT_ASC])
-            ->all();
+        $children = $page->children()->sortedByTree()->active()->visibleInMenu()->all();
 
         if ($children) {
             $item['items'] = [];
