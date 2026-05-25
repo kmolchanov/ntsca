@@ -6,6 +6,7 @@
 use yii\helpers\Html;
 
 $this->title = $model->title;
+$this->params['breadcrumbs'] = $model->breadcrumbs;
 ?>
 
 <div class="site-index" style="margin-top: 50px">

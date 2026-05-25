@@ -337,6 +337,33 @@ class Page extends \yii\db\ActiveRecord
         return $item;
     }
 
+    public function getBreadcrumbs(): array
+    {
+        $breadcrumbs = [];
+
+        $parents = $this->parents()
+            ->andWhere(['<>', 'slug', 'root-service-page-non-editable'])
+            ->orderBy(['lft' => SORT_ASC])
+            ->all();
+
+        foreach ($parents as $parent) {
+            if ((int)$parent->is_main === self::IS_YES) {
+                continue;
+            }
+
+            $breadcrumbs[] = [
+                'label' => $parent->menuTitle,
+                'url' => $parent->url,
+            ];
+        }
+
+        if ((int)$this->is_main !== self::IS_YES) {
+            $breadcrumbs[] = $this->title;
+        }
+
+        return $breadcrumbs;
+    }
+
     /**
      * @return mixed
      */

@@ -35,7 +35,7 @@ return [
     'Delete' => 'Удалить',
     'Error' => 'Ошибка',
     'File upload failed.' => 'Загрузка файла не удалась.',
-    'Home' => 'Главная',
+    'Home' => 'Үй',
     'Invalid data received for parameter "{param}".' => 'Неправильное значение параметра "{param}".',
     'Login Required' => 'Требуется вход.',
     'Missing required arguments: {params}' => 'Отсутствуют обязательные аргументы: {params}',
