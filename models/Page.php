@@ -293,7 +293,7 @@ class Page extends \yii\db\ActiveRecord
 
         $items = [];
 
-        $children = $rootPage->children()->sortedByTree()->active()->visibleInMenu()->all();
+        $children = $rootPage->children(1)->sortedByTree()->active()->visibleInMenu()->all();
 
         foreach ($children as $page) {
             $items[] = self::buildMenuItem($page);
@@ -324,7 +324,7 @@ class Page extends \yii\db\ActiveRecord
             'url' => $page->url,
         ];
 
-        $children = $page->children()->sortedByTree()->active()->visibleInMenu()->all();
+        $children = $page->children(1)->sortedByTree()->active()->visibleInMenu()->all();
 
         if ($children) {
             $item['items'] = [];
