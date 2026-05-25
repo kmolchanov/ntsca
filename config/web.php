@@ -52,8 +52,13 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '<lang:(ru|en|ky)>' => 'site/index',
+                // static pages
+                '<lang:(ru|en|ky)>/news' => 'news/index',
+                '<lang:(ru|en|ky)>/contact' => 'site/contact',
+                // dynamic pages
                 '<lang:(ru|en|ky)>/<slug:[\w\-]+>' => 'site/index',
+                // homepage
+                '<lang:(ru|en|ky)>' => 'site/index',
             ],
         ],
         'view' => [

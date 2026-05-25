@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 /** @var yii\web\View $this */
 
+use app\models\Page;
 use kartik\bs5dropdown\Dropdown;
 use yii\bootstrap5\Nav;
 use yii\bootstrap5\NavBar;
@@ -16,68 +17,7 @@ $current = $languages[$currentLang] ?? reset($languages);
 $route = Yii::$app->controller->route;
 $params = Yii::$app->request->get();
 
-$items = [
-    [
-        'label' => 'Home',
-        'url' => ['/site/index'],
-    ],
-    [
-        'label' => 'About',
-        'url' => ['/site/about'],
-    ],
-    [
-        'label' => 'Contact',
-        'url' => ['/site/contact'],
-        'items' => [
-            [
-                'label' => 'About',
-                'url' => ['/site/about'],
-                'items' => [
-                    [
-                        'label' => 'About',
-                        'url' => ['/site/about'],
-                        'items' => [
-                            [
-                                'label' => 'About',
-                                'url' => ['/site/about'],
-                                'items' => [
-                                    [
-                                        'label' => 'About',
-                                        'url' => ['/site/about'],
-                                    ],
-                                ]
-                            ],
-                        ]
-                    ],
-                    [
-                        'label' => 'About',
-                        'url' => ['/site/about'],
-                        'items' => [
-                            [
-                                'label' => 'About',
-                                'url' => ['/site/about'],
-                            ],
-                        ]
-                    ],
-                ]
-            ],
-        ]
-    ],
-    [
-        'label' => 'Login',
-        'url' => ['/site/login'],
-        'visible' => Yii::$app->user->isGuest,
-    ],
-    [
-        'label' => 'Logout (' . Html::encode(Yii::$app->user->identity?->username ?? '') . ')',
-        'url' => ['/site/logout'],
-        'linkOptions' => [
-            'data-method' => 'post',
-            'class' => 'nav-link logout',
-        ],
-        'visible' => !Yii::$app->user->isGuest,
-    ],
-];
+$items = Page::getMenuItems();
 
 ?>
 <header id="header">

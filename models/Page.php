@@ -5,6 +5,7 @@ namespace app\models;
 use creocoder\nestedsets\NestedSetsBehavior;
 use Yii;
 use yii\behaviors\TimestampBehavior;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "{{%page}}".
@@ -253,6 +254,88 @@ class Page extends \yii\db\ActiveRecord
         }
 
         return $list;
+    }
+
+    public function getUrl(): array
+    {
+        $lang = Yii::$app->params['lang'] ?? 'ru';
+
+        if ((int)$this->is_main === self::IS_YES) {
+            return ['/site/index', 'lang' => $lang];
+        }
+
+        return [
+            '/site/index',
+            'lang' => $lang,
+            'slug' => $this->slug,
+        ];
+    }
+
+    public static function getMenuItems(): array
+    {
+        $roots = self::find()
+            ->roots()
+            ->sortedByTree()
+            ->all();
+
+        $items = [];
+
+        foreach ($roots as $root) {
+            $children = $root->children()
+                ->andWhere([
+                    'is_active' => self::IS_YES,
+                    'show_in_menu' => self::IS_YES,
+                ])
+                ->orderBy(['lft' => SORT_ASC])
+                ->all();
+
+            foreach ($children as $page) {
+                $items[] = self::buildMenuItem($page);
+            }
+        }
+
+        $lang = Yii::$app->params['lang'] ?? Yii::$app->params['defaultLanguage'] ?? 'ru';
+        $language = Yii::$app->params['languages'][$lang] ?? [];
+
+        $menu = $language['menu'] ?? [];
+
+        $items[] = [
+            'label' => $menu['news'] ?? 'Новости',
+            'url' => ['/news/index', 'lang' => $lang],
+        ];
+
+        $items[] = [
+            'label' => $menu['contacts'] ?? 'Контакты',
+            'url' => ['/site/contact', 'lang' => $lang],
+        ];
+
+        return $items;
+    }
+
+    protected static function buildMenuItem(Page $page): array
+    {
+        $item = [
+            'label' => Html::encode($page->menuTitle),
+            'url' => $page->url,
+        ];
+
+        $children = $page->children(1)
+            ->andWhere([
+                'is_active' => self::IS_YES,
+                'show_in_menu' => self::IS_YES,
+            ])
+            ->orderBy(['lft' => SORT_ASC])
+            ->all();
+
+        if ($children) {
+            $item['items'] = [];
+
+            foreach ($children as $child) {
+                $item['items'][] = self::buildMenuItem($child);
+            }
+        }
+
+        return $item;
     }
 
     /**
