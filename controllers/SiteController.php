@@ -104,6 +104,15 @@ class SiteController extends Controller
             'expire' => time() + 3600 * 24 * 365,
         ]));
 
+        Yii::$app->i18n->translations['yii/bootstrap5'] = [
+            'class' => \yii\i18n\PhpMessageSource::class,
+            'basePath' => '@app/messages',
+            'sourceLanguage' => 'en-US',
+            'fileMap' => [
+                'yii/bootstrap5' => 'bootstrap5.php',
+            ],
+        ];
+
         return parent::beforeAction($action);
     }
 
