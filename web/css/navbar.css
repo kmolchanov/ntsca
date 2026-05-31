@@ -1,6 +1,6 @@
 /* Вариант 1: Современный градиентный navbar с приглушенными оранжевыми акцентами */
 .navbar-dark {
-    background: linear-gradient(135deg, #bf5a36 0%, #d67d3e 50%, #a0522d 100%) !important;
+    background: linear-gradient(135deg, #83C933 0%, #3a9cbd 50%, #40B3D8 100%) !important;
     box-shadow: 0 2px 15px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
     padding: 1.2rem 0;
