@@ -247,7 +247,8 @@
 
 .navbar .dropdown-item.active {
     color: #fff;
-    background: #83C933;
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: inset 3px 0 0 rgba(131, 201, 51, 0.85);
 }
 
 /* Фикс для breadcrumbs - добавляем отступ сверху */
@@ -358,7 +359,8 @@ body.has-fixed-navbar {
 /* 4. Если пункт меню активен (текущая страница) */
 .navbar-nav .dropdown-menu .dropdown-item.active {
     color: #fff !important;
-    background-color: #83C933 !important;
+    background-color: rgba(255, 255, 255, 0.18) !important;
+    box-shadow: inset 3px 0 0 rgba(131, 201, 51, 0.85);
 }
 
 /* 5. Корректируем цвет стрелочек (треугольников) для вложенных меню */
