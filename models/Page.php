@@ -358,7 +358,7 @@ class Page extends \yii\db\ActiveRecord
         }
 
         if ((int)$this->is_main !== self::IS_YES) {
-            $breadcrumbs[] = $this->title;
+            $breadcrumbs[] = $this->menuTitle;
         }
 
         return $breadcrumbs;
