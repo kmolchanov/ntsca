@@ -251,22 +251,6 @@
     box-shadow: inset 3px 0 0 rgba(131, 201, 51, 0.85);
 }
 
-/* Фикс для breadcrumbs - добавляем отступ сверху */
-.breadcrumb {
-    margin-top: 1rem;
-    padding-top: 1rem;
-}
-
-/* Альтернативный вариант для контейнера с breadcrumbs */
-.main-content {
-    padding-top: 2rem;
-}
-
-/* Для фиксированного navbar добавляем больше padding к body */
-body.has-fixed-navbar {
-    padding-top: 80px;
-}
-
 /* Анимация появления */
 .navbar {
     animation: slideDown 0.5s ease-out;

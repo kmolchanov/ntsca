@@ -5,6 +5,41 @@ main > .container {
     min-height: 100%;
 }
 
+main > .container.has-breadcrumbs {
+    padding-top: 158px;
+}
+
+main > .container.has-breadcrumbs > .breadcrumb {
+    margin-bottom: 0.5rem;
+}
+
+main > .container.has-breadcrumbs > .site-login,
+main > .container.has-breadcrumbs > .site-contact,
+main > .container.has-breadcrumbs > .site-error,
+main > .container.has-breadcrumbs > .site-about,
+main > .container.has-breadcrumbs > .site-contact-success {
+    flex: 0 0 auto;
+}
+
+main > .container.has-breadcrumbs > .site-login.py-5,
+main > .container.has-breadcrumbs > .site-contact.py-5 {
+    padding-top: 0.75rem !important;
+}
+
+.site-index-main {
+    padding-top: 50px;
+}
+
+@media (max-width: 767.98px) {
+    main > .container {
+        padding-top: 150px;
+    }
+
+    main > .container > .site-error {
+        flex: 0 0 auto;
+    }
+}
+
 .header-logo {
     height: 100px;
     margin-right: 30px;

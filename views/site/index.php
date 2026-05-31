@@ -7,9 +7,10 @@ use yii\helpers\Html;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'] = $model->breadcrumbs;
+$siteIndexClass = $model->is_main ? 'site-index site-index-main' : 'site-index';
 ?>
 
-<div class="site-index" style="margin-top: 50px">
+<div class="<?= Html::encode($siteIndexClass) ?>">
 
     <div class="container">
 
