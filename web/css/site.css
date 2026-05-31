@@ -30,6 +30,50 @@ main > .container.has-breadcrumbs > .site-contact.py-5 {
     padding-top: 50px;
 }
 
+.page-content {
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.page-content img,
+.page-content video,
+.page-content iframe {
+    max-width: 100% !important;
+}
+
+.page-content img,
+.page-content video {
+    height: auto !important;
+}
+
+.page-content img {
+    display: block;
+    float: none !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-content figure {
+    display: block;
+    float: none !important;
+    max-width: 100% !important;
+    width: auto !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    overflow: visible;
+}
+
+.page-content figure img {
+    width: auto !important;
+    max-height: none !important;
+}
+
+.page-content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
 @media (max-width: 767.98px) {
     main > .container {
         padding-top: 150px;
