@@ -1,5 +1,12 @@
-/* Вариант 1: Современный градиентный navbar с приглушенными оранжевыми акцентами */
+/* Вариант 1: Современный градиентный navbar с зелено-бирюзовыми акцентами */
 .navbar-dark {
+    --navbar-primary: #83C933;
+    --navbar-mid: #3a9cbd;
+    --navbar-secondary: #40B3D8;
+    --navbar-deep: #237f99;
+    --navbar-deeper: #1a657a;
+    --navbar-soft: rgba(255,255,255,0.16);
+    --navbar-soft-strong: rgba(255,255,255,0.24);
     background: linear-gradient(135deg, #83C933 0%, #3a9cbd 50%, #40B3D8 100%) !important;
     box-shadow: 0 2px 15px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
@@ -19,7 +26,9 @@
     transform: scale(1.05);
 }
 
-.navbar-nav .nav-link {
+.navbar-dark .navbar-nav .nav-link,
+.navbar-dark .dropdown > .nav-link,
+.navbar-dark #theme-toggle {
     color: rgba(255,255,255,0.9) !important;
     font-weight: 500;
     padding: 0.75rem 1.25rem !important;
@@ -29,12 +38,15 @@
     border-radius: 0.375rem;
 }
 
-.navbar-nav .nav-link:hover {
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .dropdown > .nav-link:hover,
+.navbar-dark #theme-toggle:hover {
     color: #fff !important;
-    background: rgba(255,255,255,0.1);
+    background: var(--navbar-soft);
 }
 
-.navbar-nav .nav-link::after {
+.navbar-dark .navbar-nav .nav-link:not(.dropdown-toggle)::after,
+.navbar-dark .dropdown > .nav-link:not(.dropdown-toggle)::after {
     content: '';
     position: absolute;
     width: 0;
@@ -45,13 +57,15 @@
     transition: all 0.3s ease;
 }
 
-.navbar-nav .nav-link:hover::after {
+.navbar-dark .navbar-nav .nav-link:not(.dropdown-toggle):hover::after,
+.navbar-dark .dropdown > .nav-link:not(.dropdown-toggle):hover::after {
     width: 80%;
     left: 10%;
 }
 
-.navbar-nav .nav-link.active {
-    background: rgba(255,255,255,0.2) !important;
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .dropdown > .nav-link.active {
+    background: var(--navbar-soft-strong) !important;
     color: #fff !important;
 }
 
@@ -165,7 +179,7 @@
 
 /* Улучшения для мобильного меню (offcanvas) */
 .offcanvas-header {
-    background: linear-gradient(135deg, #bf5a36 0%, #a0522d 100%);
+    background: linear-gradient(135deg, #83C933 0%, #3a9cbd 100%);
     color: white;
 }
 
@@ -182,8 +196,7 @@
 }
 
 .offcanvas .navbar-nav .nav-link:hover {
-    background: rgba(191, 90, 54, 0.1) !important;
-    padding-left: 1.5rem !important;
+    background: rgba(64, 179, 216, 0.14) !important;
 }
 
 /* Кнопка-гамбургер */
@@ -206,23 +219,35 @@
 }
 
 /* Dropdown меню */
-.dropdown-menu {
-    background: rgba(255, 255, 255, 0.95);
+.navbar .dropdown-menu {
+    background: linear-gradient(180deg, rgba(35, 127, 153, 0.98), rgba(26, 101, 122, 0.98));
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
-    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 16px 36px rgba(21, 75, 91, 0.32);
+    border-radius: 0.65rem;
     padding: 0.5rem 0;
 }
 
-.dropdown-item {
-    transition: all 0.3s ease;
+.navbar .dropdown-item {
+    color: rgba(255, 255, 255, 0.86);
+    display: flex;
+    align-items: center;
+    width: calc(100% - 0.8rem);
+    margin: 0.125rem 0.4rem;
+    border-radius: 0.45rem;
     padding: 0.5rem 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.dropdown-item:hover {
-    background: rgba(191, 90, 54, 0.1);
-    transform: translateX(5px);
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+    color: #fff;
+    background: rgba(131, 201, 51, 0.18);
+}
+
+.navbar .dropdown-item.active {
+    color: #fff;
+    background: #83C933;
 }
 
 /* Фикс для breadcrumbs - добавляем отступ сверху */
@@ -274,7 +299,7 @@ body.has-fixed-navbar {
 }
 
 .navbar.fixed-top.scrolled {
-    background: rgba(191, 90, 54, 0.95) !important;
+    background: linear-gradient(135deg, rgba(131, 201, 51, 0.96) 0%, rgba(58, 156, 189, 0.96) 50%, rgba(64, 179, 216, 0.96) 100%) !important;
     backdrop-filter: blur(10px);
     padding: 0.8rem 0;
 }
@@ -306,14 +331,14 @@ body.has-fixed-navbar {
     }
 }
 /* ==========================================================================
-   Кастомизация выпадающего меню под стиль Navbar (Dark Theme)
+   Кастомизация выпадающего меню под стиль Navbar
    ========================================================================== */
 
 /* 1. Задаем фон и рамки для ВСЕХ уровней выпадающих списков */
 .navbar-nav .dropdown-menu {
-    background-color: #bf5a36 !important; /* Тот же цвет, что и .bg-dark в Bootstrap 5 */
+    background-color: #237f99 !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5) !important;
+    box-shadow: 0 0.75rem 1.5rem rgba(21, 75, 91, 0.35) !important;
 }
 
 /* 2. Цвет текста для обычных пунктов меню */
@@ -327,13 +352,13 @@ body.has-fixed-navbar {
 .navbar-nav .dropdown-menu .dropdown-item:focus,
 .navbar-nav .dropdown-menu .dropdown-submenu:hover > .dropdown-item {
     color: #fff !important;
-    background-color: rgba(255, 255, 255, 0.1) !important; /* Легкое полупрозрачное высветление */
+    background-color: rgba(131, 201, 51, 0.18) !important;
 }
 
 /* 4. Если пункт меню активен (текущая страница) */
 .navbar-nav .dropdown-menu .dropdown-item.active {
     color: #fff !important;
-    background-color: #5e9a5e !important; /* Стандартный синий цвет Bootstrap для active, можно заменить на свой */
+    background-color: #83C933 !important;
 }
 
 /* 5. Корректируем цвет стрелочек (треугольников) для вложенных меню */
