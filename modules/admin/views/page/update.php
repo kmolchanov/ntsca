@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Page */
 
-$this->title = 'Редактирование: ' . $model->title_ky;
+$this->title = 'Редактирование: ' . $model->title_ru;
 $this->params['breadcrumbs'][] = ['label' => 'Страницы', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title_ru, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Редактирование';
