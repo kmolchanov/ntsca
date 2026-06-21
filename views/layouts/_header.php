@@ -7,7 +7,6 @@ declare(strict_types=1);
 use app\models\Page;
 use kartik\bs5dropdown\Dropdown;
 use yii\bootstrap5\Nav;
-use yii\bootstrap5\NavBar;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -21,57 +20,76 @@ $items = Page::getMenuItems();
 
 ?>
 <header id="header">
-    <?php NavBar::begin([
-        'brandLabel' => Html::img('/images/logo.png', [
-                'alt' => '',
-                'class' => 'header-logo'
-            ]),
-        'brandUrl' => ['/site/index', 'lang' => Yii::$app->params['lang'] ?? 'ru'],
-        'options' => ['class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top'],
-    ]) ?>
-    <?= Nav::widget(
-        [
-            'options' => ['class' => 'navbar-nav me-auto'],
-            'encodeLabels' => false,
-            'dropdownClass' => Dropdown::class,
-            'items' => $items,
-            'activateParents' => false,
-        ],
-    ) ?>
-    <?php if ($current && $languages): ?>
-        <div class="dropdown">
-            <a class="nav-link dropdown-toggle d-flex align-items-center gap-2"
-               href="#"
-               id="languageDropdown"
-               role="button"
-               data-bs-toggle="dropdown"
-               aria-expanded="false">
-                <span class="fi fi-<?= Html::encode($current['flag']) ?>"></span>
-                <span><?= Html::encode($current['label']) ?></span>
-            </a>
+    <nav class="site-navbar fixed-top" aria-label="Main navigation">
+        <div class="site-navbar-top">
+            <div class="container">
+                <div class="site-navbar-top-inner">
+                    <?= Html::a(
+                        Html::img('/images/logo.png', [
+                            'alt' => Yii::$app->name,
+                            'class' => 'header-logo',
+                        ]),
+                        ['/site/index', 'lang' => Yii::$app->params['lang'] ?? 'ru'],
+                        ['class' => 'site-navbar-brand'],
+                    ) ?>
 
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
-                <?php foreach ($languages as $code => $language): ?>
-                    <?php $params['lang'] = $code; ?>
+                    <div class="site-navbar-actions">
+                        <?php if ($current && $languages): ?>
+                            <div class="dropdown site-navbar-language">
+                                <a class="site-navbar-language-toggle dropdown-toggle d-flex align-items-center gap-2"
+                                   href="#"
+                                   id="languageDropdown"
+                                   role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-expanded="false">
+                                    <span class="fi fi-<?= Html::encode($current['flag']) ?>"></span>
+                                    <span><?= Html::encode($current['label']) ?></span>
+                                </a>
 
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center gap-2 <?= $code === $currentLang ? 'active' : '' ?>"
-                           href="<?= Url::to(array_merge([$route], $params)) ?>">
-                            <span class="fi fi-<?= Html::encode($language['flag']) ?>"></span>
-                            <span><?= Html::encode($language['label']) ?></span>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                                    <?php foreach ($languages as $code => $language): ?>
+                                        <?php $params['lang'] = $code; ?>
+
+                                        <li>
+                                            <a class="dropdown-item d-flex align-items-center gap-2 <?= $code === $currentLang ? 'active' : '' ?>"
+                                               href="<?= Url::to(array_merge([$route], $params)) ?>">
+                                                <span class="fi fi-<?= Html::encode($language['flag']) ?>"></span>
+                                                <span><?= Html::encode($language['label']) ?></span>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            </div>
+                        <?php endif; ?>
+
+                        <button class="navbar-toggler site-navbar-toggler"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#siteNavbarMenu"
+                                aria-controls="siteNavbarMenu"
+                                aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-    <?php endif; ?>
-    <?php Html::button(
-        '&#127769;',
-        [
-            'id' => 'theme-toggle',
-            'class' => 'btn btn-link nav-link fs-5',
-            'aria-label' => 'Switch to dark mode',
-        ],
-    ) ?>
-    <?php NavBar::end() ?>
+
+        <div class="site-navbar-menu-row">
+            <div class="container">
+                <div class="collapse navbar-collapse site-navbar-collapse" id="siteNavbarMenu">
+                    <?= Nav::widget(
+                        [
+                            'options' => ['class' => 'navbar-nav site-navbar-nav'],
+                            'encodeLabels' => false,
+                            'dropdownClass' => Dropdown::class,
+                            'items' => $items,
+                            'activateParents' => false,
+                        ],
+                    ) ?>
+                </div>
+            </div>
+        </div>
+    </nav>
 </header>
