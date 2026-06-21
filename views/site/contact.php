@@ -27,7 +27,11 @@ $this->params['meta_description'] = $address;
             <div class="col-lg-4 d-flex login-brand-panel text-white">
                 <div class="d-flex flex-column justify-content-between p-4 p-lg-5 w-100">
                     <div>
-                        <div class="contact-brand-mark mb-4">NTSCA</div>
+                        <?php if (!empty($contactLabels['badge'])): ?>
+                            <div class="contact-brand-mark mb-4">
+                                <?= Html::encode($contactLabels['badge']) ?>
+                            </div>
+                        <?php endif; ?>
                         <?php if (!empty($contactLabels['highlights']) && is_array($contactLabels['highlights'])): ?>
                             <div class="contact-highlights">
                                 <?php foreach ($contactLabels['highlights'] as $highlight): ?>

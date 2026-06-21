@@ -24,6 +24,7 @@ return [
             ],
             'contactPage' => [
                 'title' => 'Контакты',
+                'badge' => 'Поможем вашим детям выбрать путь в современном мире',
                 'intro' => 'Мы на связи в WhatsApp, Instagram и по телефону.',
                 'addressLabel' => 'Адрес',
                 'address' => 'Кыргызстан, город Бишкек, улица Кольбаева 12',
@@ -60,6 +61,7 @@ return [
             ],
             'contactPage' => [
                 'title' => 'Contacts',
+                'badge' => 'Helping your children choose their path in the modern world',
                 'intro' => 'Reach us on WhatsApp, Instagram, or by phone.',
                 'addressLabel' => 'Address',
                 'address' => 'Kyrgyzstan, Bishkek, Kolbaev Street 12',
@@ -96,6 +98,7 @@ return [
             ],
             'contactPage' => [
                 'title' => 'Байланыштар',
+                'badge' => 'Балдарыңызга заманбап дүйнөдө өз жолун тандоого жардам беребиз',
                 'intro' => 'Биз менен WhatsApp, Instagram же телефон аркылуу байланышыңыз.',
                 'addressLabel' => 'Дарек',
                 'address' => 'Кыргызстан, Бишкек шаары, Кольбаев көчөсү 12',

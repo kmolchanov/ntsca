@@ -487,15 +487,20 @@ a.desc:after {
 }
 
 .contact-brand-mark {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
-    width: 96px;
-    height: 40px;
+    width: fit-content;
+    min-height: 40px;
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0.5rem 0.9rem;
     border: 2px solid rgba(255, 255, 255, 0.9);
     color: #fff;
     font-weight: 800;
-    letter-spacing: 0.08em;
+    line-height: 1.25;
+    text-align: center;
 }
 
 .contact-highlights {
