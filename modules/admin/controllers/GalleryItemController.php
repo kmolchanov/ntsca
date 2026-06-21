@@ -122,7 +122,6 @@ class GalleryItemController extends BaseController
 
         $gallery_id = $model->gallery_id;
 
-        $model->removeImages();
         $model->delete();
 
         return $this->redirect(['index', 'gallery_id' => $gallery_id]);
