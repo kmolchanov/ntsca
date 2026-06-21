@@ -57,7 +57,7 @@ class NewsController extends Controller
                 ->active()
                 ->sorted(),
             'pagination' => [
-                'pageSize' => 9,
+                'pageSize' => 3,
             ],
         ]);
 

@@ -13,6 +13,32 @@ main > .container.has-breadcrumbs > .breadcrumb {
     margin-bottom: 0.5rem;
 }
 
+.breadcrumb a {
+    color: #237f99;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: #83C933;
+}
+
+.breadcrumb .active {
+    color: var(--bs-secondary-color);
+}
+
+.pagination {
+    --bs-pagination-color: #237f99;
+    --bs-pagination-hover-color: #237f99;
+    --bs-pagination-hover-bg: rgba(131, 201, 51, 0.12);
+    --bs-pagination-hover-border-color: rgba(35, 127, 153, 0.35);
+    --bs-pagination-focus-color: #237f99;
+    --bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(35, 127, 153, 0.16);
+    --bs-pagination-active-color: #fff;
+    --bs-pagination-active-bg: #237f99;
+    --bs-pagination-active-border-color: #237f99;
+}
+
 main > .container.has-breadcrumbs > .site-login,
 main > .container.has-breadcrumbs > .site-contact,
 main > .container.has-breadcrumbs > .site-error,
