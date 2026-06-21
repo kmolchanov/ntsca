@@ -22,6 +22,21 @@ return [
             'pages' => [
                 'subpagesLabel' => 'Подстраницы',
             ],
+            'contactPage' => [
+                'title' => 'Контакты',
+                'intro' => 'Мы на связи в WhatsApp, Instagram и по телефону.',
+                'addressLabel' => 'Адрес',
+                'address' => 'Кыргызстан, город Бишкек, улица Кольбаева 12',
+                'phoneLabel' => 'Телефон',
+                'whatsappLabel' => 'WhatsApp',
+                'instagramLabel' => 'Instagram',
+                'mapTitle' => 'Карта проезда',
+                'highlights' => [
+                    'Консультация по программам и поступлению',
+                    'Поможем выбрать подходящее направление обучения',
+                    'Открыты для родителей, абитуриентов и партнёров',
+                ],
+            ],
         ],
         'en' => [
             'label' => 'English',
@@ -42,6 +57,21 @@ return [
             ],
             'pages' => [
                 'subpagesLabel' => 'Subpages',
+            ],
+            'contactPage' => [
+                'title' => 'Contacts',
+                'intro' => 'Reach us on WhatsApp, Instagram, or by phone.',
+                'addressLabel' => 'Address',
+                'address' => 'Kyrgyzstan, Bishkek, Kolbaev Street 12',
+                'phoneLabel' => 'Phone',
+                'whatsappLabel' => 'WhatsApp',
+                'instagramLabel' => 'Instagram',
+                'mapTitle' => 'Map',
+                'highlights' => [
+                    'Guidance on programs and admissions',
+                    'We will help you choose the right study path',
+                    'Open to parents, applicants, and partners',
+                ],
             ],
         ],
         'ky' => [
@@ -64,12 +94,30 @@ return [
             'pages' => [
                 'subpagesLabel' => 'Кошумча барактар',
             ],
+            'contactPage' => [
+                'title' => 'Байланыштар',
+                'intro' => 'Биз менен WhatsApp, Instagram же телефон аркылуу байланышыңыз.',
+                'addressLabel' => 'Дарек',
+                'address' => 'Кыргызстан, Бишкек шаары, Кольбаев көчөсү 12',
+                'phoneLabel' => 'Телефон',
+                'whatsappLabel' => 'WhatsApp',
+                'instagramLabel' => 'Instagram',
+                'mapTitle' => 'Карта',
+                'highlights' => [
+                    'Программалар жана кабыл алуу боюнча кеңеш беребиз',
+                    'Окуу багытын тандоого жардам беребиз',
+                    'Ата-энелер, абитуриенттер жана өнөктөштөр үчүн ачыкпыз',
+                ],
+            ],
         ],
     ],
     'defaultLanguage' => 'ru',
     'contacts' => [
         'phone' => '996558915002',
+        'phoneDisplay' => '+996 558 915 002',
         'instagram' => 'https://www.instagram.com/newthinkingschool.kg/',
         'whatsapp' => '996558915002',
+        'address' => 'Кыргызстан, город Бишкек, улица Кольбаева 12',
+        'mapQuery' => 'Кыргызстан, Бишкек, улица Кольбаева 12',
     ],
 ];

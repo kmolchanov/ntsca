@@ -6,12 +6,12 @@ $contacts = Yii::$app->params['contacts'] ?? [];
 ?>
 
 <div class="floating-contacts">
-    <?php if (!empty($contacts['instagram'])): ?>
-        <?= Html::a('<i class="fa fa-instagram"></i>', $contacts['instagram'], [
-            'class' => 'floating-contact floating-contact-instagram',
+    <?php if (!empty($contacts['whatsapp'])): ?>
+        <?= Html::a('<i class="fa fa-whatsapp"></i>', 'https://api.whatsapp.com/send/?phone=' . $contacts['whatsapp'], [
+            'class' => 'floating-contact floating-contact-whatsapp',
             'target' => '_blank',
             'rel' => 'noopener noreferrer',
-            'aria-label' => 'Instagram',
+            'aria-label' => 'WhatsApp',
         ]) ?>
     <?php endif; ?>
 
@@ -22,12 +22,12 @@ $contacts = Yii::$app->params['contacts'] ?? [];
         ]) ?>
     <?php endif; ?>
 
-    <?php if (!empty($contacts['whatsapp'])): ?>
-        <?= Html::a('<i class="fa fa-whatsapp"></i>', 'https://api.whatsapp.com/send/?phone=' . $contacts['whatsapp'], [
-            'class' => 'floating-contact floating-contact-whatsapp',
+    <?php if (!empty($contacts['instagram'])): ?>
+        <?= Html::a('<i class="fa fa-instagram"></i>', $contacts['instagram'], [
+            'class' => 'floating-contact floating-contact-instagram',
             'target' => '_blank',
             'rel' => 'noopener noreferrer',
-            'aria-label' => 'WhatsApp',
+            'aria-label' => 'Instagram',
         ]) ?>
     <?php endif; ?>
 </div>

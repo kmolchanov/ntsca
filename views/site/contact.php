@@ -1,165 +1,132 @@
 <?php
 
 /** @var yii\web\View $this */
-/** @var yii\bootstrap5\ActiveForm $form */
-/** @var app\models\ContactForm $model */
 
-use yii\bootstrap5\ActiveForm;
 use yii\bootstrap5\Html;
-use yii\captcha\Captcha;
 
-$this->title = 'Contact us';
+$lang = Yii::$app->params['lang'] ?? Yii::$app->params['defaultLanguage'] ?? 'ru';
+$defaultLang = Yii::$app->params['defaultLanguage'] ?? 'ru';
+$languages = Yii::$app->params['languages'] ?? [];
+$defaultLanguage = $languages[$defaultLang] ?? [];
+$language = $languages[$lang] ?? $defaultLanguage;
+$contactLabels = array_merge($defaultLanguage['contactPage'] ?? [], $language['contactPage'] ?? []);
+$contacts = Yii::$app->params['contacts'] ?? [];
+$address = $contactLabels['address'] ?? $contacts['address'] ?? '';
+$mapQuery = $contacts['mapQuery'] ?? $contacts['address'] ?? '';
+$mapSrc = 'https://www.google.com/maps?q=' . rawurlencode($mapQuery) . '&output=embed';
+
+$this->title = $contactLabels['title'] ?? '';
 $this->params['breadcrumbs'][] = $this->title;
-$this->params['meta_description'] = 'Get in touch with us. Send us a message using the contact form.';
-$this->params['meta_keywords'] = 'yii, yii2, contact, support, feedback';
-$htmlIcon = <<<HTML
-{label}<div class="input-group"><span class="input-group-text" aria-hidden="true">%s</span>{input}</div>{error}{hint}
-HTML;
-$labelOptions = ['class' => 'form-label fw-semibold small'];
+$this->params['meta_description'] = $address;
 ?>
-<?php if (Yii::$app->session->hasFlash('success')): ?>
-
-<div class="site-contact-success d-flex align-items-center justify-content-center text-center">
-    <div class="site-contact-success-content mx-auto">
-        <h1 class="display-6 fw-semibold mb-3">Message sent</h1>
-
-        <?php if (YII_DEBUG && Yii::$app->mailer->useFileTransport): ?>
-            <p class="text-body-tertiary small mb-4">
-                Development mode: email saved under
-                <code><?= Yii::getAlias(Yii::$app->mailer->fileTransportPath) ?></code>
-            </p>
-        <?php endif; ?>
-
-        <?= Html::a(
-            'Send another message',
-            ['contact'],
-            ['class' => 'btn btn-outline-primary btn-lg'],
-        ) ?>
-    </div>
-</div>
-
-<?php else: ?>
 
 <div class="site-contact d-flex align-items-center justify-content-center py-5">
-    <div class="card border-0 overflow-hidden login-split-card login-split-card-wide">
+    <div class="card border-0 overflow-hidden login-split-card login-split-card-wide contact-card">
         <div class="row g-0">
 
-            <!-- Brand panel -->
-            <div class="col-md-4 d-none d-md-flex login-brand-panel text-white">
+            <div class="col-lg-4 d-flex login-brand-panel text-white">
                 <div class="d-flex flex-column justify-content-between p-4 p-lg-5 w-100">
                     <div>
-                        <?= Html::img(
-                            Yii::getAlias('@web/images/yii3_full_white_for_dark.svg'),
-                            [
-                                'alt' => 'Yii Framework',
-                                'class' => 'mb-4',
-                                'height' => 40,
-                            ],
-                        ) ?>
+                        <div class="contact-brand-mark mb-4">NTSCA</div>
+                        <?php if (!empty($contactLabels['highlights']) && is_array($contactLabels['highlights'])): ?>
+                            <div class="contact-highlights">
+                                <?php foreach ($contactLabels['highlights'] as $highlight): ?>
+                                    <div class="contact-highlight">
+                                        <span class="contact-highlight-icon" aria-hidden="true">
+                                            <i class="fa fa-check"></i>
+                                        </span>
+                                        <span><?= Html::encode($highlight) ?></span>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
                     </div>
                     <div>
-                        <h2 class="fw-bold mb-3 login-brand-title">
-                            Get In<br>Touch
-                        </h2>
-                        <p class="opacity-75 mb-0 login-brand-text">
-                            Have a question or business inquiry? We would love to hear from you.
-                        </p>
+                        <h1 class="fw-bold mb-3 login-brand-title">
+                            <?= Html::encode($this->title) ?>
+                        </h1>
+                        <?php if (!empty($contactLabels['intro'])): ?>
+                            <p class="opacity-75 mb-0 login-brand-text">
+                                <?= Html::encode($contactLabels['intro']) ?>
+                            </p>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
 
-            <!-- Form panel -->
-            <div class="col-md-8">
+            <div class="col-lg-8">
                 <div class="p-4 p-lg-5">
-                    <div class="text-center mb-4">
-                        <div class="d-md-none mb-3">
-                            <?= Html::img(
-                                Yii::getAlias('@web/images/yii3_full_black_for_light.svg'),
-                                [
-                                    'alt' => 'Yii Framework',
-                                    'class' => 'login-mobile-logo',
-                                    'height' => 36,
-                                ],
-                            ) ?>
-                        </div>
-                        <h1 class="h3 fw-bold mb-1"><?= Html::encode($this->title) ?></h1>
-                        <p class="text-body-secondary small">Fill out the form below and we will get back to you</p>
+                    <div class="contact-list mb-4">
+                        <?php if ($address): ?>
+                            <div class="contact-item">
+                                <span class="contact-item-icon" aria-hidden="true">
+                                    <i class="fa fa-map-marker"></i>
+                                </span>
+                                <div>
+                                    <div class="contact-item-label"><?= Html::encode($contactLabels['addressLabel'] ?? '') ?></div>
+                                    <div class="contact-item-value"><?= Html::encode($address) ?></div>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php if (!empty($contacts['whatsapp'])): ?>
+                            <a class="contact-item contact-item-link" href="https://api.whatsapp.com/send/?phone=<?= Html::encode($contacts['whatsapp']) ?>" target="_blank" rel="noopener noreferrer">
+                                <span class="contact-item-icon contact-item-icon-whatsapp" aria-hidden="true">
+                                    <i class="fa fa-whatsapp"></i>
+                                </span>
+                                <span>
+                                    <span class="contact-item-label"><?= Html::encode($contactLabels['whatsappLabel'] ?? '') ?></span>
+                                    <span class="contact-item-value">
+                                        <?= Html::encode($contacts['phoneDisplay'] ?? ('+' . $contacts['whatsapp'])) ?>
+                                    </span>
+                                </span>
+                            </a>
+                        <?php endif; ?>
+
+                        <?php if (!empty($contacts['phone'])): ?>
+                            <a class="contact-item contact-item-link" href="tel:+<?= Html::encode($contacts['phone']) ?>">
+                                <span class="contact-item-icon" aria-hidden="true">
+                                    <i class="fa fa-phone"></i>
+                                </span>
+                                <span>
+                                    <span class="contact-item-label"><?= Html::encode($contactLabels['phoneLabel'] ?? '') ?></span>
+                                    <span class="contact-item-value">
+                                        <?= Html::encode($contacts['phoneDisplay'] ?? ('+' . $contacts['phone'])) ?>
+                                    </span>
+                                </span>
+                            </a>
+                        <?php endif; ?>
+
+                        <?php if (!empty($contacts['instagram'])): ?>
+                            <a class="contact-item contact-item-link" href="<?= Html::encode($contacts['instagram']) ?>" target="_blank" rel="noopener noreferrer">
+                                <span class="contact-item-icon contact-item-icon-instagram" aria-hidden="true">
+                                    <i class="fa fa-instagram"></i>
+                                </span>
+                                <span>
+                                    <span class="contact-item-label"><?= Html::encode($contactLabels['instagramLabel'] ?? '') ?></span>
+                                    <span class="contact-item-value">@newthinkingschool.kg</span>
+                                </span>
+                            </a>
+                        <?php endif; ?>
                     </div>
 
-                    <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-
-                    <div class="row">
-                        <div class="col-sm-6 mb-3">
-                            <?= $form->field($model, 'name', [
-                                'options' => ['class' => 'mb-0'],
-                                'template' => sprintf($htmlIcon, '&#128100;'),
-                                'inputOptions' => [
-                                    'class' => 'form-control',
-                                    'placeholder' => 'Name',
-                                    'autofocus' => true,
-                                ],
-                            ])->label('Your Name', $labelOptions) ?>
-                        </div>
-
-                        <div class="col-sm-6 mb-3">
-                            <?= $form->field($model, 'email', [
-                                'options' => ['class' => 'mb-0'],
-                                'template' => sprintf($htmlIcon, '&#9993;'),
-                                'inputOptions' => [
-                                    'class' => 'form-control',
-                                    'placeholder' => 'email@example.com',
-                                ],
-                            ])->label('Your Email', $labelOptions) ?>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <?= $form->field($model, 'subject', [
-                            'options' => ['class' => 'mb-0'],
-                            'template' => sprintf($htmlIcon, '&#128172;'),
-                            'inputOptions' => [
-                                'class' => 'form-control',
-                                'placeholder' => 'Subject',
-                            ],
-                        ])->label('Subject', $labelOptions) ?>
-                    </div>
-
-                    <div class="mb-3">
-                        <?= $form->field($model, 'body', [
-                            'options' => ['class' => 'mb-0'],
-                            'template' => '{label}{input}{error}{hint}',
-                            'inputOptions' => [
-                                'class' => 'form-control',
-                                'placeholder' => 'Your message...',
-                            ],
-                        ])->textarea()->label('Message', $labelOptions) ?>
-                    </div>
-
-                    <div class="d-flex align-items-center gap-3 flex-wrap">
-                        <?= $form->field($model, 'verifyCode', [
-                            'enableLabel' => false,
-                            'options' => ['class' => ''],
-                            'inputOptions' => ['aria-label' => 'Verification code'],
-                        ])->widget(Captcha::class, [
-                            'template' => '<div class="d-flex align-items-center gap-2">{image}{input}</div>',
-                        ]) ?>
-
-                        <?= Html::submitButton(
-                            'Submit',
-                            [
-                                'class' => 'btn login-btn text-white px-4 ms-auto',
-                                'name' => 'contact-button',
-                            ],
-                        ) ?>
-                    </div>
-
-                    <?php ActiveForm::end(); ?>
-
+                    <?php if ($mapQuery): ?>
+                        <section class="contact-map-section" aria-label="<?= Html::encode($contactLabels['mapTitle'] ?? '') ?>">
+                            <h2 class="h5 fw-bold mb-3"><?= Html::encode($contactLabels['mapTitle'] ?? '') ?></h2>
+                            <div class="contact-map">
+                                <iframe
+                                    src="<?= Html::encode($mapSrc) ?>"
+                                    title="<?= Html::encode($contactLabels['mapTitle'] ?? '') ?>"
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+                        </section>
+                    <?php endif; ?>
                 </div>
             </div>
 
         </div>
     </div>
 </div>
-
-<?php endif; ?>

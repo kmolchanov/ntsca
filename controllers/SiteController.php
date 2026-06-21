@@ -7,13 +7,11 @@ namespace app\controllers;
 use app\models\News;
 use app\models\Page;
 use Yii;
-use app\models\ContactForm;
 use app\models\LoginForm;
 use yii\captcha\CaptchaAction;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\base\Security;
-use yii\mail\MailerInterface;
 use yii\web\Controller;
 use yii\web\ErrorAction;
 use yii\web\NotFoundHttpException;
@@ -24,7 +22,6 @@ class SiteController extends Controller
     public function __construct(
         $id,
         $module,
-        private readonly MailerInterface $mailer,
         private readonly Security $security,
         $config = [],
     ) {
@@ -189,25 +186,7 @@ class SiteController extends Controller
      */
     public function actionContact(): Response|string
     {
-        $model = new ContactForm();
-
-        $contact = $model->load($this->request->post()) && $model->contact(
-            $this->mailer,
-            Yii::$app->params['adminEmail'],
-            Yii::$app->params['senderEmail'],
-            Yii::$app->params['senderName'],
-        );
-
-        if ($contact) {
-            Yii::$app->session->setFlash(
-                'success',
-                'Thank you for contacting us. We will respond to you as soon as possible.',
-            );
-
-            return $this->refresh();
-        }
-
-        return $this->render('contact', ['model' => $model]);
+        return $this->render('contact');
     }
 
     /**

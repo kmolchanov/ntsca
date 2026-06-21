@@ -310,11 +310,11 @@ class Page extends \yii\db\ActiveRecord
             'label' => $menu['news'] ?? '',
             'url' => ['/news/index', 'lang' => $lang],
         ];
-//
-//        $items[] = [
-//            'label' => $menu['contacts'] ?? '',
-//            'url' => ['/site/contact', 'lang' => $lang],
-//        ];
+
+        $items[] = [
+            'label' => $menu['contacts'] ?? '',
+            'url' => ['/site/contact', 'lang' => $lang],
+        ];
 
         return $items;
     }
