@@ -33,6 +33,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'title_ru',
             'title_en',
             'title_ky',
+            [
+                'attribute' => 'images',
+                'value' => Html::img($model->thumbnailPicture, ['class' => 'img-thumbnail img-rounded']),
+                'format' => 'raw',
+            ],
             'description_ru:ntext',
             'description_en:ntext',
             'description_ky:ntext',

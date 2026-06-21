@@ -3,6 +3,7 @@
 namespace app\models;
 
 use rico\yii2images\behaviors\ImageBehave;
+use Yii;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -76,7 +77,7 @@ class News extends \yii\db\ActiveRecord
             [['is_active'], 'in', 'range' => [self::IS_NO, self::IS_YES]],
             [['is_active'], 'default', 'value' => self::IS_NO],
             [['slug'], 'unique'],
-            [['images'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg, jpeg, webp'],
+            [['images'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, webp'],
             [['bottom_gallery_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gallery::className(), 'targetAttribute' => ['bottom_gallery_id' => 'id']],
             [['bottom_video_id'], 'exist', 'skipOnError' => true, 'targetClass' => Video::className(), 'targetAttribute' => ['bottom_video_id' => 'id']],
             [['top_gallery_id'], 'exist', 'skipOnError' => true, 'targetClass' => Gallery::className(), 'targetAttribute' => ['top_gallery_id' => 'id']],
@@ -95,6 +96,7 @@ class News extends \yii\db\ActiveRecord
             'title_ru' => 'Название(Русский)',
             'title_en' => 'Название(Английский)',
             'title_ky' => 'Название(Кыргызский)',
+            'images' => 'Изображение',
             'description_ru' => 'Краткое описание(Русский)',
             'description_en' => 'Краткое описание(Английский)',
             'description_ky' => 'Краткое описание(Кыргызский)',
@@ -153,6 +155,42 @@ class News extends \yii\db\ActiveRecord
         }
 
         return $list;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        return $this->getLocalizedAttribute('title');
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        return $this->getLocalizedAttribute('description');
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getContent()
+    {
+        return $this->getLocalizedAttribute('content');
+    }
+
+    /**
+     * @param string $attribute
+     * @return string|null
+     */
+    protected function getLocalizedAttribute(string $attribute): ?string
+    {
+        $lang = Yii::$app->params['lang'] ?? Yii::$app->params['defaultLanguage'] ?? 'ru';
+        $field = $attribute . '_' . $lang;
+
+        return $this->{$field} ?: $this->{$attribute . '_ru'};
     }
 
     /**

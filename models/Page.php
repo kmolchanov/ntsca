@@ -304,10 +304,10 @@ class Page extends \yii\db\ActiveRecord
 
         $menu = $language['menu'] ?? [];
 
-//        $items[] = [
-//            'label' => $menu['news'] ?? 'Новости',
-//            'url' => ['/news/index', 'lang' => $lang],
-//        ];
+        $items[] = [
+            'label' => $menu['news'] ?? 'Новости',
+            'url' => ['/news/index', 'lang' => $lang],
+        ];
 //
 //        $items[] = [
 //            'label' => $menu['contacts'] ?? 'Контакты',
