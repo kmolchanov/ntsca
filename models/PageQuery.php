@@ -42,7 +42,7 @@ class PageQuery extends \yii\db\ActiveQuery
      */
     public function sortedByTree()
     {
-        return $this->orderBy(Page::tableName().'.lft');
+        return $this->orderBy('lft');
     }
 
     /**
