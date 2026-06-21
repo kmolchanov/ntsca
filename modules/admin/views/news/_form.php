@@ -2,6 +2,7 @@
 
 use app\models\Gallery;
 use app\models\Video;
+use app\modules\admin\components\RedactorSettings;
 use kartik\widgets\Select2;
 use vova07\imperavi\Widget;
 use yii\helpers\Html;
@@ -17,6 +18,10 @@ use yii\widgets\ActiveForm;
 <div class="news-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <?php $contentEditorSettings = RedactorSettings::content(
+        Url::to(['/admin/news/image-upload']),
+        Url::to(['/admin/news/file-upload'])
+    ); ?>
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
@@ -43,90 +48,21 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'content_ru')->widget(
         Widget::className(),
         [
-            'settings' => [
-                'minHeight' => 300,
-                'replaceDivs' => false,
-                'deniedTags' => false,
-                'cleanOnPaste' => false,
-                'imageCaption' => true,
-                'cleanup' => false,
-                'removeEmptyTags' => false,
-                'removeSpaces' => false,
-                'paragraphize' => false,
-                'imageUpload' => Url::to(['/admin/news/image-upload']),
-                'fileUpload' => Url::to(['/admin/news/file-upload']),
-
-                'plugins' => [
-                    'imagemanager',
-                    'filemanager',
-                    'clips',
-                    'fullscreen',
-                    'table',
-                    'fontsize',
-                    'fontcolor',
-                    'video',
-                ]
-            ],
+            'settings' => $contentEditorSettings,
         ]
     ); ?>
 
     <?= $form->field($model, 'content_en')->widget(
         Widget::className(),
         [
-            'settings' => [
-                'minHeight' => 300,
-                'replaceDivs' => false,
-                'deniedTags' => false,
-                'cleanOnPaste' => false,
-                'imageCaption' => true,
-                'cleanup' => false,
-                'removeEmptyTags' => false,
-                'removeSpaces' => false,
-                'paragraphize' => false,
-                'imageUpload' => Url::to(['/admin/news/image-upload']),
-                'fileUpload' => Url::to(['/admin/news/file-upload']),
-
-                'plugins' => [
-                    'imagemanager',
-                    'filemanager',
-                    'clips',
-                    'fullscreen',
-                    'table',
-                    'fontsize',
-                    'fontcolor',
-                    'video',
-                ]
-            ],
+            'settings' => $contentEditorSettings,
         ]
     ); ?>
 
     <?= $form->field($model, 'content_ky')->widget(
         Widget::className(),
         [
-            'settings' => [
-                'minHeight' => 300,
-                'replaceDivs' => false,
-                'deniedTags' => false,
-                'cleanOnPaste' => false,
-                'imageCaption' => true,
-                'cleanup' => false,
-                'removeEmptyTags' => false,
-                'removeSpaces' => false,
-                'paragraphize' => false,
-                'imageUpload' => Url::to(['/admin/news/image-upload']),
-                'fileUpload' => Url::to(['/admin/news/file-upload']),
-
-                'plugins' => [
-                    'imagemanager',
-                    'filemanager',
-                    'clips',
-                    'fullscreen',
-                    'table',
-                    'fontsize',
-                    'fontcolor',
-                    'video',
-                ]
-            ],
+            'settings' => $contentEditorSettings,
         ]
     ); ?>
 

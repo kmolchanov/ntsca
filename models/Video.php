@@ -131,6 +131,11 @@ class Video extends \yii\db\ActiveRecord
             <div class="ratio ratio-16x9">
                 <iframe
                     src="' . Html::encode($this->youtubeEmbedUrl) . '"
+                    title="' . Html::encode($this->title ?: 'YouTube video') . '"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    frameborder="0"
                     allowfullscreen>
                 </iframe>
             </div>
@@ -151,6 +156,11 @@ class Video extends \yii\db\ActiveRecord
                 <iframe
                     class="embed-responsive-item"
                     src="' . Html::encode($this->youtubeEmbedUrl) . '"
+                    title="' . Html::encode($this->title ?: 'YouTube video') . '"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    frameborder="0"
                     allowfullscreen>
                 </iframe>
             </div>
@@ -170,6 +180,10 @@ class Video extends \yii\db\ActiveRecord
             <div style="width: 180px;">
                 <iframe
                     src="' . Html::encode($this->youtubeEmbedUrl) . '"
+                    title="' . Html::encode($this->title ?: 'YouTube video') . '"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
                     frameborder="0"
                     allowfullscreen>
                 </iframe>
@@ -217,6 +231,9 @@ class Video extends \yii\db\ActiveRecord
             'rel' => 0,
             'modestbranding' => 1,
             'controls' => 1,
+            'playsinline' => 1,
+            'fs' => 1,
+            'iv_load_policy' => 3,
         ]);
     }
 

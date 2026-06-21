@@ -3,6 +3,7 @@
 use app\models\Gallery;
 use app\models\Page;
 use app\models\Video;
+use app\modules\admin\components\RedactorSettings;
 use kartik\widgets\Select2;
 use vova07\imperavi\Widget;
 use yii\helpers\Html;
@@ -17,6 +18,10 @@ use yii\widgets\ActiveForm;
 <div class="page-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <?php $contentEditorSettings = RedactorSettings::content(
+        Url::to(['/admin/page/image-upload']),
+        Url::to(['/admin/page/file-upload'])
+    ); ?>
 
     <?= $form->field($model, 'parent_id')->widget(Select2::className(), [
         'id' => rand(),
@@ -47,90 +52,21 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'content_ru')->widget(
         Widget::className(),
         [
-            'settings' => [
-                'minHeight' => 300,
-                'replaceDivs' => false,
-                'deniedTags' => false,
-                'cleanOnPaste' => false,
-                'imageCaption' => true,
-                'cleanup' => false,
-                'removeEmptyTags' => false,
-                'removeSpaces' => false,
-                'paragraphize' => false,
-                'imageUpload' => Url::to(['/admin/page/image-upload']),
-                'fileUpload' => Url::to(['/admin/page/file-upload']),
-
-                'plugins' => [
-                    'imagemanager',
-                    'filemanager',
-                    'clips',
-                    'fullscreen',
-                    'table',
-                    'fontsize',
-                    'fontcolor',
-                    'video',
-                ]
-            ],
+            'settings' => $contentEditorSettings,
         ]
     ); ?>
 
     <?= $form->field($model, 'content_en')->widget(
         Widget::className(),
         [
-            'settings' => [
-                'minHeight' => 300,
-                'replaceDivs' => false,
-                'deniedTags' => false,
-                'cleanOnPaste' => false,
-                'imageCaption' => true,
-                'cleanup' => false,
-                'removeEmptyTags' => false,
-                'removeSpaces' => false,
-                'paragraphize' => false,
-                'imageUpload' => Url::to(['/admin/page/image-upload']),
-                'fileUpload' => Url::to(['/admin/page/file-upload']),
-
-                'plugins' => [
-                    'imagemanager',
-                    'filemanager',
-                    'clips',
-                    'fullscreen',
-                    'table',
-                    'fontsize',
-                    'fontcolor',
-                    'video',
-                ]
-            ],
+            'settings' => $contentEditorSettings,
         ]
     ); ?>
 
     <?= $form->field($model, 'content_ky')->widget(
         Widget::className(),
         [
-            'settings' => [
-                'minHeight' => 300,
-                'replaceDivs' => false,
-                'deniedTags' => false,
-                'cleanOnPaste' => false,
-                'imageCaption' => true,
-                'cleanup' => false,
-                'removeEmptyTags' => false,
-                'removeSpaces' => false,
-                'paragraphize' => false,
-                'imageUpload' => Url::to(['/admin/page/image-upload']),
-                'fileUpload' => Url::to(['/admin/page/file-upload']),
-
-                'plugins' => [
-                    'imagemanager',
-                    'filemanager',
-                    'clips',
-                    'fullscreen',
-                    'table',
-                    'fontsize',
-                    'fontcolor',
-                    'video',
-                ]
-            ],
+            'settings' => $contentEditorSettings,
         ]
     ); ?>
 
