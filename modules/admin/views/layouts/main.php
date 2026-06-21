@@ -44,6 +44,7 @@ ModuleAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            ['label' => 'Новости', 'url' => ['/admin/news/index'], 'visible' => Yii::$app->user->can('admin')],
             ['label' => 'Страницы', 'url' => ['/admin/page/index'], 'visible' => Yii::$app->user->can('admin')],
             ['label' => 'Галереи', 'url' => ['/admin/gallery/index'], 'visible' => Yii::$app->user->can('admin')],
             ['label' => 'Видео', 'url' => ['/admin/video/index'], 'visible' => Yii::$app->user->can('admin')],
