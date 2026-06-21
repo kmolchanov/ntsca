@@ -8,28 +8,13 @@ use yii\helpers\Url;
 use yii\bootstrap5\LinkPager;
 
 $lang = Yii::$app->params['lang'] ?? Yii::$app->params['defaultLanguage'] ?? 'ru';
-$newsTitle = Yii::$app->params['languages'][$lang]['menu']['news'] ?? 'Новости';
-$labels = [
-    'ru' => [
-        'intro' => 'Последние новости и события школы.',
-        'readMore' => 'Подробнее...',
-        'empty' => 'Новости пока не опубликованы.',
-    ],
-    'en' => [
-        'intro' => 'Latest school news and events.',
-        'readMore' => 'More details...',
-        'empty' => 'No news has been published yet.',
-    ],
-    'ky' => [
-        'intro' => 'Мектептин акыркы жаңылыктары жана окуялары.',
-        'readMore' => 'Кененирээк...',
-        'empty' => 'Азырынча жаңылыктар жарыялана элек.',
-    ],
-][$lang] ?? [
-    'intro' => 'Последние новости и события школы.',
-    'readMore' => 'Подробнее...',
-    'empty' => 'Новости пока не опубликованы.',
-];
+$defaultLang = Yii::$app->params['defaultLanguage'] ?? 'ru';
+$languages = Yii::$app->params['languages'] ?? [];
+$defaultLanguage = $languages[$defaultLang] ?? [];
+$language = $languages[$lang] ?? $defaultLanguage;
+$menu = array_merge($defaultLanguage['menu'] ?? [], $language['menu'] ?? []);
+$labels = array_merge($defaultLanguage['news'] ?? [], $language['news'] ?? []);
+$newsTitle = $menu['news'] ?? '';
 
 $this->title = $newsTitle;
 $this->params['breadcrumbs'][] = $this->title;
@@ -39,7 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="d-flex align-items-end justify-content-between gap-3 mb-4">
         <div>
             <h1 class="mb-2"><?= Html::encode($this->title) ?></h1>
-            <p class="text-body-secondary mb-0"><?= Html::encode($labels['intro']) ?></p>
+            <?php if (!empty($labels['intro'])): ?>
+                <p class="text-body-secondary mb-0"><?= Html::encode($labels['intro']) ?></p>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -72,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </p>
                             <?php endif; ?>
 
-                            <?= Html::a($labels['readMore'], ['/news/view', 'lang' => $lang, 'slug' => $model->slug], [
+                            <?= Html::a($labels['readMore'] ?? '', ['/news/view', 'lang' => $lang, 'slug' => $model->slug], [
                                 'class' => 'news-card-link',
                             ]) ?>
                         </div>
@@ -87,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     <?php else: ?>
         <div class="alert alert-info mb-0">
-            <?= Html::encode($labels['empty']) ?>
+            <?= Html::encode($labels['empty'] ?? '') ?>
         </div>
     <?php endif; ?>
 </section>

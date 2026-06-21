@@ -12,6 +12,11 @@ return [
                 'news' => 'Новости',
                 'contacts' => 'Контакты',
             ],
+            'news' => [
+                'intro' => 'Последние новости и события школы.',
+                'readMore' => 'Подробнее...',
+                'empty' => 'Новости пока не опубликованы.',
+            ],
         ],
         'en' => [
             'label' => 'English',
@@ -23,6 +28,11 @@ return [
                 'news' => 'News',
                 'contacts' => 'Contacts',
             ],
+            'news' => [
+                'intro' => 'Latest school news and events.',
+                'readMore' => 'More details...',
+                'empty' => 'No news has been published yet.',
+            ],
         ],
         'ky' => [
             'label' => 'Кыргызча',
@@ -33,6 +43,11 @@ return [
             'menu' => [
                 'news' => 'Жаңылыктар',
                 'contacts' => 'Байланыштар',
+            ],
+            'news' => [
+                'intro' => 'Мектептин акыркы жаңылыктары жана окуялары.',
+                'readMore' => 'Кененирээк...',
+                'empty' => 'Азырынча жаңылыктар жарыялана элек.',
             ],
         ],
     ],

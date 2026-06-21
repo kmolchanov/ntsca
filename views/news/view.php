@@ -6,7 +6,12 @@
 use yii\helpers\Html;
 
 $lang = Yii::$app->params['lang'] ?? Yii::$app->params['defaultLanguage'] ?? 'ru';
-$newsTitle = Yii::$app->params['languages'][$lang]['menu']['news'] ?? 'Новости';
+$defaultLang = Yii::$app->params['defaultLanguage'] ?? 'ru';
+$languages = Yii::$app->params['languages'] ?? [];
+$defaultLanguage = $languages[$defaultLang] ?? [];
+$language = $languages[$lang] ?? $defaultLanguage;
+$menu = array_merge($defaultLanguage['menu'] ?? [], $language['menu'] ?? []);
+$newsTitle = $menu['news'] ?? '';
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => $newsTitle, 'url' => ['/news/index', 'lang' => $lang]];

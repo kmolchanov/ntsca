@@ -300,17 +300,19 @@ class Page extends \yii\db\ActiveRecord
         }
 
         $lang = Yii::$app->params['lang'] ?? Yii::$app->params['defaultLanguage'] ?? 'ru';
-        $language = Yii::$app->params['languages'][$lang] ?? [];
-
-        $menu = $language['menu'] ?? [];
+        $defaultLang = Yii::$app->params['defaultLanguage'] ?? 'ru';
+        $languages = Yii::$app->params['languages'] ?? [];
+        $defaultLanguage = $languages[$defaultLang] ?? [];
+        $language = $languages[$lang] ?? $defaultLanguage;
+        $menu = array_merge($defaultLanguage['menu'] ?? [], $language['menu'] ?? []);
 
         $items[] = [
-            'label' => $menu['news'] ?? 'Новости',
+            'label' => $menu['news'] ?? '',
             'url' => ['/news/index', 'lang' => $lang],
         ];
 //
 //        $items[] = [
-//            'label' => $menu['contacts'] ?? 'Контакты',
+//            'label' => $menu['contacts'] ?? '',
 //            'url' => ['/site/contact', 'lang' => $lang],
 //        ];
 
