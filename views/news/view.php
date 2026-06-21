@@ -14,42 +14,39 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <article class="news-view">
-    <header class="news-view-header mb-4">
-        <time class="news-card-date" datetime="<?= Html::encode($model->date) ?>">
-            <?= Yii::$app->formatter->asDate($model->date, 'long') ?>
-        </time>
+    <div class="container">
+        <header class="news-view-header mb-4">
+            <time class="news-card-date" datetime="<?= Html::encode($model->date) ?>">
+                <?= Yii::$app->formatter->asDate($model->date, 'long') ?>
+            </time>
 
-        <h1 class="mt-2 mb-3"><?= Html::encode($this->title) ?></h1>
+            <h1 class="mt-2 mb-3"><?= Html::encode($this->title) ?></h1>
 
-        <?php if ($model->description): ?>
-            <p class="lead text-body-secondary mb-0">
-                <?= Html::encode($model->description) ?>
-            </p>
+            <?php if ($model->description): ?>
+                <p class="lead text-body-secondary mb-0">
+                    <?= Html::encode($model->description) ?>
+                </p>
+            <?php endif; ?>
+        </header>
+
+        <?php if ($model->topVideo): ?>
+            <?= $this->render('//site/_video', ['model' => $model->topVideo]) ?>
         <?php endif; ?>
-    </header>
 
-    <?= Html::img($model->picture, [
-        'class' => 'news-view-image',
-        'alt' => $model->title,
-    ]) ?>
+        <?php if ($model->topGallery): ?>
+            <?= $this->render('//site/_gallery', ['model' => $model->topGallery]) ?>
+        <?php endif; ?>
 
-    <?php if ($model->topVideo): ?>
-        <?= $this->render('//site/_video', ['model' => $model->topVideo]) ?>
-    <?php endif; ?>
+        <div class="page-content news-view-content">
+            <?= $model->content ?>
+        </div>
 
-    <?php if ($model->topGallery): ?>
-        <?= $this->render('//site/_gallery', ['model' => $model->topGallery]) ?>
-    <?php endif; ?>
+        <?php if ($model->bottomVideo): ?>
+            <?= $this->render('//site/_video', ['model' => $model->bottomVideo]) ?>
+        <?php endif; ?>
 
-    <div class="page-content news-view-content">
-        <?= $model->content ?>
+        <?php if ($model->bottomGallery): ?>
+            <?= $this->render('//site/_gallery', ['model' => $model->bottomGallery]) ?>
+        <?php endif; ?>
     </div>
-
-    <?php if ($model->bottomVideo): ?>
-        <?= $this->render('//site/_video', ['model' => $model->bottomVideo]) ?>
-    <?php endif; ?>
-
-    <?php if ($model->bottomGallery): ?>
-        <?= $this->render('//site/_gallery', ['model' => $model->bottomGallery]) ?>
-    <?php endif; ?>
 </article>

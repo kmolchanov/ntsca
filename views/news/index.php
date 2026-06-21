@@ -12,22 +12,22 @@ $newsTitle = Yii::$app->params['languages'][$lang]['menu']['news'] ?? 'Ново�
 $labels = [
     'ru' => [
         'intro' => 'Последние новости и события школы.',
-        'readMore' => 'Читать далее',
+        'readMore' => 'Подробнее...',
         'empty' => 'Новости пока не опубликованы.',
     ],
     'en' => [
         'intro' => 'Latest school news and events.',
-        'readMore' => 'Read more',
+        'readMore' => 'More details...',
         'empty' => 'No news has been published yet.',
     ],
     'ky' => [
         'intro' => 'Мектептин акыркы жаңылыктары жана окуялары.',
-        'readMore' => 'Кененирээк окуу',
+        'readMore' => 'Кененирээк...',
         'empty' => 'Азырынча жаңылыктар жарыялана элек.',
     ],
 ][$lang] ?? [
     'intro' => 'Последние новости и события школы.',
-    'readMore' => 'Читать далее',
+    'readMore' => 'Подробнее...',
     'empty' => 'Новости пока не опубликованы.',
 ];
 
