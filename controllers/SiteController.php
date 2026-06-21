@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace app\controllers;
 
+use app\models\News;
 use app\models\Page;
 use Yii;
 use app\models\ContactForm;
@@ -137,8 +138,13 @@ class SiteController extends Controller
             throw new NotFoundHttpException('Страница не найдена.');
         }
 
+        $latestNews = (int)$page->is_main === Page::IS_YES
+            ? News::find()->active()->sorted()->limit(3)->all()
+            : [];
+
         return $this->render('index', [
             'model' => $page,
+            'latestNews' => $latestNews,
         ]);
     }
 

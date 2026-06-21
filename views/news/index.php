@@ -44,25 +44,11 @@ $this->params['breadcrumbs'][] = $this->title;
                             ]) ?>
                         </a>
 
-                        <div class="news-card-body">
-                            <time class="news-card-date" datetime="<?= Html::encode($model->date) ?>">
-                                <?= Yii::$app->formatter->asDate($model->date, 'long') ?>
-                            </time>
-
-                            <h2 class="news-card-title">
-                                <?= Html::a(Html::encode($model->title), ['/news/view', 'lang' => $lang, 'slug' => $model->slug]) ?>
-                            </h2>
-
-                            <?php if ($model->description): ?>
-                                <p class="news-card-description">
-                                    <?= Html::encode($model->description) ?>
-                                </p>
-                            <?php endif; ?>
-
-                            <?= Html::a($labels['readMore'] ?? '', ['/news/view', 'lang' => $lang, 'slug' => $model->slug], [
-                                'class' => 'news-card-link',
-                            ]) ?>
-                        </div>
+                        <?= $this->render('_card', [
+                            'model' => $model,
+                            'lang' => $lang,
+                            'readMoreLabel' => $labels['readMore'] ?? '',
+                        ]) ?>
                     </article>
                 </div>
             <?php endforeach; ?>

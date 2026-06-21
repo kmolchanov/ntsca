@@ -2,12 +2,14 @@
 
 /** @var yii\web\View $this */
 /** @var app\models\Page $model */
+/** @var app\models\News[] $latestNews */
 
 use yii\helpers\Html;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'] = $model->breadcrumbs;
 $siteIndexClass = $model->is_main ? 'site-index site-index-main' : 'site-index';
+$subpages = (int)$model->show_subpages === $model::IS_YES ? $model->subpages : [];
 ?>
 
 <div class="<?= Html::encode($siteIndexClass) ?>">
@@ -18,6 +20,10 @@ $siteIndexClass = $model->is_main ? 'site-index site-index-main' : 'site-index';
             <h1 class="mb-4">
                 <?= Html::encode($model->title) ?>
             </h1>
+        <?php endif; ?>
+
+        <?php if ($subpages): ?>
+            <?= $this->render('_subpages', ['pages' => $subpages]) ?>
         <?php endif; ?>
 
         <?php if ($model->topVideo): ?>
@@ -38,6 +44,10 @@ $siteIndexClass = $model->is_main ? 'site-index site-index-main' : 'site-index';
 
         <?php if ($model->bottomGallery): ?>
             <?= $this->render('_gallery', ['model' => $model->bottomGallery]) ?>
+        <?php endif; ?>
+
+        <?php if ($model->is_main && $latestNews): ?>
+            <?= $this->render('_latest_news', ['models' => $latestNews]) ?>
         <?php endif; ?>
 
     </div>

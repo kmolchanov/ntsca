@@ -379,7 +379,10 @@ class Page extends \yii\db\ActiveRecord
      */
     public function getSubpages()
     {
-        return $this->children(1)->all();
+        return $this->children(1)
+            ->active()
+            ->sortedByTree()
+            ->all();
     }
 
     /**

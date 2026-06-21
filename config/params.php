@@ -16,6 +16,11 @@ return [
                 'intro' => 'Последние новости и события школы.',
                 'readMore' => 'Подробнее...',
                 'empty' => 'Новости пока не опубликованы.',
+                'latestTitle' => 'Свежие новости',
+                'allNews' => 'Все новости',
+            ],
+            'pages' => [
+                'subpagesLabel' => 'Подстраницы',
             ],
         ],
         'en' => [
@@ -32,6 +37,11 @@ return [
                 'intro' => 'Latest school news and events.',
                 'readMore' => 'More details...',
                 'empty' => 'No news has been published yet.',
+                'latestTitle' => 'Latest news',
+                'allNews' => 'All news',
+            ],
+            'pages' => [
+                'subpagesLabel' => 'Subpages',
             ],
         ],
         'ky' => [
@@ -48,6 +58,11 @@ return [
                 'intro' => 'Мектептин акыркы жаңылыктары жана окуялары.',
                 'readMore' => 'Кененирээк...',
                 'empty' => 'Азырынча жаңылыктар жарыялана элек.',
+                'latestTitle' => 'Акыркы жаңылыктар',
+                'allNews' => 'Бардык жаңылыктар',
+            ],
+            'pages' => [
+                'subpagesLabel' => 'Кошумча барактар',
             ],
         ],
     ],

@@ -100,6 +100,64 @@ main > .container.has-breadcrumbs > .site-contact.py-5 {
     overflow-x: auto;
 }
 
+.subpages-section {
+    margin-top: -0.25rem;
+}
+
+.subpages-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.subpage-card {
+    display: flex;
+    align-items: center;
+    min-height: 72px;
+    padding: 1rem 1.1rem;
+    border: 1px solid rgba(35, 127, 153, 0.22);
+    border-left: 4px solid #237f99;
+    border-radius: 0.5rem;
+    background: linear-gradient(135deg, rgba(35, 127, 153, 0.08), rgba(131, 201, 51, 0.08));
+    color: var(--bs-heading-color);
+    text-decoration: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.subpage-card:hover {
+    border-color: rgba(35, 127, 153, 0.45);
+    box-shadow: 0 0.75rem 2rem rgba(21, 75, 91, 0.1);
+    color: #237f99;
+    transform: translateY(-2px);
+}
+
+.subpage-card-title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+@media (min-width: 768px) {
+    .subpages-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1200px) {
+    .subpages-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.latest-news-section {
+    margin-top: 3.5rem;
+}
+
+.latest-news-all-link {
+    flex: 0 0 auto;
+    margin-top: 0;
+}
+
 .news-card {
     display: flex;
     flex-direction: column;
