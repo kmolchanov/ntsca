@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     return $model->youtubePreviewHtml;
                 },
-                'contentOptions' => ['style' => 'vertical-align: middle;'],
+                'contentOptions' => ['style' => 'vertical-align: middle; text-align: center; white-space: nowrap;'],
             ],
             [
                 'attribute' => 'title_ru',
@@ -43,7 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'yii\grid\ActionColumn',
-                'contentOptions' => ['style' => 'vertical-align: middle; white-space: nowrap;'],
+                'contentOptions' => [
+                    'style' => 'width:140px; vertical-align: middle; text-align: center; white-space: nowrap;',
+                ],
             ],
         ],
     ]); ?>

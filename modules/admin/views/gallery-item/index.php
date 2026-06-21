@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'Изображение',
                 'format' => 'raw',
                 'contentOptions' => [
-                    'style' => 'width:140px; vertical-align: middle;',
+                    'style' => 'width:140px; vertical-align: middle; text-align: center; white-space: nowrap;',
                 ],
                 'value' => function ($model) {
                     return Html::img($model->thumbnailPicture, [
@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{delete}',
-                'contentOptions' => ['style' => 'vertical-align: middle; white-space: nowrap;'],
+                'contentOptions' => ['style' => 'width:140px; vertical-align: middle; text-align: center; white-space: nowrap;'],
             ],
         ],
     ]); ?>

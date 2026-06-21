@@ -26,7 +26,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'title_ru',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'contentOptions' => [
+                    'style' => 'width:140px; vertical-align: middle; text-align: center; white-space: nowrap;',
+                ],
+            ],
         ],
     ]); ?>
 
