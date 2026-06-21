@@ -149,6 +149,14 @@ main > .container.has-breadcrumbs > .site-contact.py-5 {
     color: #83C933;
 }
 
+.news-view-date {
+    display: block;
+    color: #237f99;
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-align: right;
+}
+
 .news-view-content {
     font-size: 1.05rem;
 }

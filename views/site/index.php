@@ -14,9 +14,11 @@ $siteIndexClass = $model->is_main ? 'site-index site-index-main' : 'site-index';
 
     <div class="container">
 
-        <h1 class="mb-4">
-            <?= Html::encode($model->title) ?>
-        </h1>
+        <?php if (!$model->is_main): ?>
+            <h1 class="mb-4">
+                <?= Html::encode($model->title) ?>
+            </h1>
+        <?php endif; ?>
 
         <?php if ($model->topVideo): ?>
             <?= $this->render('_video', ['model' => $model->topVideo]) ?>

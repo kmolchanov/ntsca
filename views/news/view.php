@@ -16,17 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
 <article class="news-view">
     <div class="container">
         <header class="news-view-header mb-4">
-            <time class="news-card-date" datetime="<?= Html::encode($model->date) ?>">
+            <h1 class="mb-2"><?= Html::encode($this->title) ?></h1>
+
+            <time class="news-view-date" datetime="<?= Html::encode($model->date) ?>">
                 <?= Yii::$app->formatter->asDate($model->date, 'long') ?>
             </time>
-
-            <h1 class="mt-2 mb-3"><?= Html::encode($this->title) ?></h1>
-
-            <?php if ($model->description): ?>
-                <p class="lead text-body-secondary mb-0">
-                    <?= Html::encode($model->description) ?>
-                </p>
-            <?php endif; ?>
         </header>
 
         <?php if ($model->topVideo): ?>
