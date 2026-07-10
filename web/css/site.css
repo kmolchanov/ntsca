@@ -1,12 +1,12 @@
 main > .container {
-    padding: 172px 15px 20px;
+    padding: 124px 15px 20px;
     display: flex;
     flex-direction: column;
     min-height: 100%;
 }
 
 main > .container.has-breadcrumbs {
-    padding-top: 184px;
+    padding-top: 136px;
 }
 
 main > .container.has-breadcrumbs > .breadcrumb {
