@@ -36,9 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'menu_title_ru',
             'menu_title_en',
             'menu_title_ky',
-            'content_ru:html',
-            'content_en:ntext',
-            'content_ky:ntext',
             [
                 'attribute' => 'top_gallery_id',
                 'value' => $model->topGallery !== null ? Html::a($model->topGallery->title_ru, ['gallery/view', 'id' => $model->topGallery->id]) : null,
