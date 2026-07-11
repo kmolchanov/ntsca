@@ -55,6 +55,12 @@ class PageController extends BaseController
                 'url' => Url::to('@web/uploads/pages/images', true), // Directory URL address, where files are stored.
                 'path' => '@webroot/uploads/pages/images', // Or absolute path to directory where files are stored.
             ],
+            'images' => [
+                'class' => 'vova07\imperavi\actions\GetImagesAction',
+                'url' => Url::to('@web/uploads/pages/images', true),
+                'path' => '@webroot/uploads/pages/images',
+                'options' => ['only' => ['*.jpg', '*.jpeg', '*.png', '*.gif', '*.webp']],
+            ],
             'file-upload' => [
                 'class' => 'vova07\imperavi\actions\UploadFileAction',
                 'url' => Url::to('@web/uploads/pages/files', true), // Directory URL address, where files are stored.

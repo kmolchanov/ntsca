@@ -3,6 +3,7 @@
 use app\models\Gallery;
 use app\models\Page;
 use app\models\Video;
+use app\modules\admin\assets\RedactorContentBlocksAsset;
 use app\modules\admin\components\RedactorSettings;
 use kartik\widgets\Select2;
 use vova07\imperavi\Widget;
@@ -20,8 +21,10 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
     <?php $contentEditorSettings = RedactorSettings::content(
         Url::to(['/admin/page/image-upload']),
-        Url::to(['/admin/page/file-upload'])
+        Url::to(['/admin/page/file-upload']),
+        Url::to(['/admin/page/images'])
     ); ?>
+    <?php $contentEditorPlugins = ['clips' => RedactorContentBlocksAsset::className()]; ?>
 
     <?= $form->field($model, 'parent_id')->widget(Select2::className(), [
         'id' => rand(),
@@ -53,6 +56,7 @@ use yii\widgets\ActiveForm;
         Widget::className(),
         [
             'settings' => $contentEditorSettings,
+            'plugins' => $contentEditorPlugins,
         ]
     ); ?>
 
@@ -60,6 +64,7 @@ use yii\widgets\ActiveForm;
         Widget::className(),
         [
             'settings' => $contentEditorSettings,
+            'plugins' => $contentEditorPlugins,
         ]
     ); ?>
 
@@ -67,6 +72,7 @@ use yii\widgets\ActiveForm;
         Widget::className(),
         [
             'settings' => $contentEditorSettings,
+            'plugins' => $contentEditorPlugins,
         ]
     ); ?>
 

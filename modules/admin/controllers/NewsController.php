@@ -51,6 +51,12 @@ class NewsController extends BaseController
                 'url' => Url::to('@web/uploads/news/images', true), // Directory URL address, where files are stored.
                 'path' => '@webroot/uploads/news/images', // Or absolute path to directory where files are stored.
             ],
+            'images' => [
+                'class' => 'vova07\imperavi\actions\GetImagesAction',
+                'url' => Url::to('@web/uploads/news/images', true),
+                'path' => '@webroot/uploads/news/images',
+                'options' => ['only' => ['*.jpg', '*.jpeg', '*.png', '*.gif', '*.webp']],
+            ],
             'file-upload' => [
                 'class' => 'vova07\imperavi\actions\UploadFileAction',
                 'url' => Url::to('@web/uploads/news/files', true), // Directory URL address, where files are stored.
