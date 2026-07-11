@@ -162,7 +162,7 @@
     color: rgba(255, 255, 255, 0.55);
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1500px) {
     .site-navbar-nav .dropdown-menu .dropdown-submenu:hover > .dropdown-menu,
     .site-navbar-nav .dropdown-menu .dropdown:hover > .dropdown-menu,
     .site-navbar-nav .dropdown-menu li:hover > .dropdown-menu {
@@ -183,7 +183,7 @@
     }
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 1499.98px) {
     .site-navbar-inner {
         grid-template-columns: auto 1fr;
         min-height: 92px;
