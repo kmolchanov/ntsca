@@ -15,7 +15,6 @@ $languages = Yii::$app->params['languages'] ?? [];
 $current = $languages[$currentLang] ?? reset($languages);
 $route = Yii::$app->controller->route;
 $params = Yii::$app->request->get();
-
 $items = Page::getMenuItems();
 
 ?>
@@ -42,19 +41,17 @@ $items = Page::getMenuItems();
                             'activateParents' => false,
                         ],
                     ) ?>
-                </div>
 
-                <div class="site-navbar-actions">
                     <?php if ($current && $languages): ?>
                         <div class="dropdown site-navbar-language">
-                            <a class="site-navbar-language-toggle dropdown-toggle d-flex align-items-center gap-2"
+                            <a class="site-navbar-language-toggle dropdown-toggle d-inline-flex align-items-center gap-2"
                                href="#"
                                id="languageDropdown"
                                role="button"
                                data-bs-toggle="dropdown"
                                aria-expanded="false">
                                 <span class="fi fi-<?= Html::encode($current['flag']) ?>"></span>
-                                <span><?= Html::encode($current['label']) ?></span>
+                                <span><?= Html::encode(strtoupper($currentLang)) ?></span>
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
@@ -72,7 +69,9 @@ $items = Page::getMenuItems();
                             </ul>
                         </div>
                     <?php endif; ?>
+                </div>
 
+                <div class="site-navbar-actions">
                     <button class="navbar-toggler site-navbar-toggler"
                             type="button"
                             data-bs-toggle="collapse"
