@@ -3,6 +3,117 @@ main > .container {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.site-bauhaus-frame {
+    --site-bauhaus-yellow: #fdd900;
+    --site-bauhaus-olive: #a39f35;
+    --site-bauhaus-blue: #009cce;
+    --site-bauhaus-purple: #311e7b;
+    --site-bauhaus-side-offset: 0;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.site-bauhaus-shape {
+    position: absolute;
+    display: block;
+    opacity: 0.4;
+}
+
+.site-bauhaus-shape-left {
+    left: var(--site-bauhaus-side-offset);
+}
+
+.site-bauhaus-shape-right {
+    right: var(--site-bauhaus-side-offset);
+}
+
+.site-bauhaus-semicircle-blue {
+    top: 18vh;
+    width: 112px;
+    height: 112px;
+    border-radius: 0 112px 112px 0;
+    background: var(--site-bauhaus-blue);
+    transform: translateX(-48px);
+}
+
+.site-bauhaus-dot-grid {
+    top: 39vh;
+    width: 96px;
+    height: 86px;
+    background: radial-gradient(circle, var(--site-bauhaus-purple) 0 3px, transparent 4px) 0 0 / 24px 24px;
+    opacity: 0.48;
+}
+
+.site-bauhaus-square-yellow {
+    top: 61vh;
+    width: 76px;
+    height: 76px;
+    background: var(--site-bauhaus-yellow);
+    transform: translateX(20px) rotate(12deg);
+}
+
+.site-bauhaus-slash-purple {
+    top: 68vh;
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    background: var(--site-bauhaus-purple);
+    transform: translateX(88px);
+    opacity: 0.34;
+}
+
+.site-bauhaus-semicircle-purple {
+    top: 22vh;
+    width: 128px;
+    height: 128px;
+    border-radius: 128px 0 0 128px;
+    background: var(--site-bauhaus-purple);
+    transform: translateX(56px);
+}
+
+.site-bauhaus-circle-olive {
+    top: 15vh;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: var(--site-bauhaus-olive);
+    transform: translateX(-96px);
+    opacity: 0.42;
+}
+
+.site-bauhaus-square-blue {
+    top: 52vh;
+    width: 82px;
+    height: 82px;
+    background: var(--site-bauhaus-blue);
+    transform: translateX(-32px) rotate(-8deg);
+    opacity: 0.38;
+}
+
+.site-bauhaus-stripes-yellow {
+    top: 60vh;
+    width: 116px;
+    height: 92px;
+    background: repeating-linear-gradient(
+        0deg,
+        var(--site-bauhaus-yellow) 0 8px,
+        transparent 8px 18px
+    );
+    transform: translateX(52px);
+    opacity: 0.4;
+}
+
+@media (max-width: 1399.98px), (prefers-reduced-transparency: reduce) {
+    .site-bauhaus-frame {
+        display: none;
+    }
 }
 
 main > .container.has-breadcrumbs {

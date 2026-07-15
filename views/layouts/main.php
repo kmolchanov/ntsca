@@ -23,6 +23,17 @@ $this->render('_head');
 
 <?= $this->render('_header') ?>
 
+<div class="site-bauhaus-frame" aria-hidden="true">
+    <span class="site-bauhaus-shape site-bauhaus-shape-left site-bauhaus-semicircle-blue"></span>
+    <span class="site-bauhaus-shape site-bauhaus-shape-left site-bauhaus-dot-grid"></span>
+    <span class="site-bauhaus-shape site-bauhaus-shape-left site-bauhaus-square-yellow"></span>
+    <span class="site-bauhaus-shape site-bauhaus-shape-left site-bauhaus-slash-purple"></span>
+    <span class="site-bauhaus-shape site-bauhaus-shape-right site-bauhaus-semicircle-purple"></span>
+    <span class="site-bauhaus-shape site-bauhaus-shape-right site-bauhaus-circle-olive"></span>
+    <span class="site-bauhaus-shape site-bauhaus-shape-right site-bauhaus-square-blue"></span>
+    <span class="site-bauhaus-shape site-bauhaus-shape-right site-bauhaus-stripes-yellow"></span>
+</div>
+
 <main id="main" class="flex-grow-1" role="main">
     <?php $hasBreadcrumbs = !empty($this->params['breadcrumbs']); ?>
     <div class="container<?= $hasBreadcrumbs ? ' has-breadcrumbs' : '' ?>">
