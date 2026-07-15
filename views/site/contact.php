@@ -13,7 +13,19 @@ $contactLabels = array_merge($defaultLanguage['contactPage'] ?? [], $language['c
 $contacts = Yii::$app->params['contacts'] ?? [];
 $address = $contactLabels['address'] ?? $contacts['address'] ?? '';
 $mapQuery = $contacts['mapQuery'] ?? $contacts['address'] ?? '';
-$mapSrc = 'https://www.google.com/maps?q=' . rawurlencode($mapQuery) . '&output=embed';
+$mapCoordinates = $contacts['mapCoordinates'] ?? [];
+$mapZoom = (int)($contacts['mapZoom'] ?? 17);
+$mapLanguage = $contacts['mapLanguage'][$lang] ?? $lang;
+$mapLanguageQuery = '&hl=' . rawurlencode($mapLanguage);
+$mapCoordinatesQuery = '';
+
+if (!empty($mapCoordinates['lat']) && !empty($mapCoordinates['lng'])) {
+    $mapCoordinatesQuery = $mapCoordinates['lat'] . ',' . $mapCoordinates['lng'];
+}
+
+$mapSrc = $mapCoordinatesQuery
+    ? 'https://www.google.com/maps?q=' . rawurlencode($mapCoordinatesQuery) . '&z=' . $mapZoom . $mapLanguageQuery . '&output=embed'
+    : 'https://www.google.com/maps?q=' . rawurlencode($mapQuery) . $mapLanguageQuery . '&output=embed';
 
 $this->title = $contactLabels['title'] ?? '';
 $this->params['breadcrumbs'][] = $this->title;
@@ -114,7 +126,7 @@ $this->params['meta_description'] = $address;
                         <?php endif; ?>
                     </div>
 
-                    <?php if ($mapQuery): ?>
+                    <?php if ($mapCoordinatesQuery || $mapQuery): ?>
                         <section class="contact-map-section" aria-label="<?= Html::encode($contactLabels['mapTitle'] ?? '') ?>">
                             <h2 class="h5 fw-bold mb-3"><?= Html::encode($contactLabels['mapTitle'] ?? '') ?></h2>
                             <div class="contact-map">
