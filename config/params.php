@@ -119,6 +119,8 @@ return [
         'phone' => '996558915002',
         'phoneDisplay' => '+996 558 915 002',
         'instagram' => 'https://www.instagram.com/newthinkingschool.kg/',
+        'youtube' => 'https://www.youtube.com/@newthinkingschoolkg',
+        'facebook' => 'https://www.facebook.com/profile.php?id=100083308430897',
         'whatsapp' => '996558915002',
         'address' => 'Кыргызстан, город Бишкек, улица Кольбаева 12',
         'mapQuery' => 'Кыргызстан, Бишкек, улица Кольбаева 12',

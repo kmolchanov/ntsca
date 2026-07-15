@@ -824,14 +824,23 @@ a.desc:after {
 
 .contact-list {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.contact-list-column {
+    display: flex;
+    flex-direction: column;
     gap: 0.85rem;
 }
 
 .contact-item {
     display: flex;
+    flex: 1 1 0;
     align-items: center;
     gap: 1rem;
+    min-height: 5.75rem;
     padding: 1rem;
     border: 1px solid rgba(35, 127, 153, 0.18);
     border-radius: 0.5rem;
@@ -872,6 +881,14 @@ a.desc:after {
     background: linear-gradient(45deg, #f09433 0%, #dc2743 50%, #bc1888 100%);
 }
 
+.contact-item-icon-youtube {
+    background: #ff0000;
+}
+
+.contact-item-icon-facebook {
+    background: #1877f2;
+}
+
 .contact-item-label,
 .contact-item-value {
     display: block;
@@ -889,6 +906,12 @@ a.desc:after {
     color: var(--bs-heading-color);
     font-weight: 700;
     line-height: 1.35;
+}
+
+@media (max-width: 767.98px) {
+    .contact-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 .contact-map {
