@@ -1,3 +1,4 @@
+/*
 .site-navbar {
     --site-navbar-primary: #83C933;
     --site-navbar-mid: #3a9cbd;
@@ -7,6 +8,20 @@
     --site-navbar-soft: rgba(255, 255, 255, 0.16);
     --site-navbar-soft-strong: rgba(255, 255, 255, 0.24);
     background: linear-gradient(135deg, var(--site-navbar-primary) 0%, var(--site-navbar-mid) 50%, var(--site-navbar-secondary) 100%);
+    box-shadow: 0 2px 18px rgba(21, 75, 91, 0.16);
+    color: #fff;
+}
+*/
+
+.site-navbar {
+    --site-navbar-primary: #ffffff;
+    --site-navbar-mid: #3a9cbd;
+    --site-navbar-secondary: #40B3D8;
+    --site-navbar-deep: #237f99;
+    --site-navbar-deeper: #1a657a;
+    --site-navbar-soft: rgba(255, 255, 255, 0.16);
+    --site-navbar-soft-strong: rgba(255, 255, 255, 0.24);
+    background: linear-gradient(135deg, var(--site-navbar-primary) 0%, #bfe3b6 24%, #8ecfbd 48%, var(--site-navbar-mid) 72%, var(--site-navbar-secondary) 100%);
     box-shadow: 0 2px 18px rgba(21, 75, 91, 0.16);
     color: #fff;
 }
