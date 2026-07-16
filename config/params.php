@@ -123,11 +123,5 @@ return [
         'facebook' => 'https://www.facebook.com/profile.php?id=100083308430897',
         'whatsapp' => '996558915002',
         'address' => 'Кыргызстан, город Бишкек, улица Кольбаева 12',
-        'mapQuery' => 'Кыргызстан, Бишкек, улица Кольбаева 12',
-        'mapCoordinates' => [
-            'lat' => 42.821272,
-            'lng' => 74.647262,
-        ],
-        'mapZoom' => 16,
     ],
 ];

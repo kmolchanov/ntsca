@@ -12,20 +12,8 @@ $language = $languages[$lang] ?? $defaultLanguage;
 $contactLabels = array_merge($defaultLanguage['contactPage'] ?? [], $language['contactPage'] ?? []);
 $contacts = Yii::$app->params['contacts'] ?? [];
 $address = $contactLabels['address'] ?? $contacts['address'] ?? '';
-$mapQuery = $contacts['mapQuery'] ?? $contacts['address'] ?? '';
-$mapCoordinates = $contacts['mapCoordinates'] ?? [];
-$mapZoom = (int)($contacts['mapZoom'] ?? 17);
-$mapLanguage = $contacts['mapLanguage'][$lang] ?? $lang;
-$mapLanguageQuery = '&hl=' . rawurlencode($mapLanguage);
-$mapCoordinatesQuery = '';
-
-if (!empty($mapCoordinates['lat']) && !empty($mapCoordinates['lng'])) {
-    $mapCoordinatesQuery = $mapCoordinates['lat'] . ',' . $mapCoordinates['lng'];
-}
-
-$mapSrc = $mapCoordinatesQuery
-    ? 'https://www.google.com/maps?q=' . rawurlencode($mapCoordinatesQuery) . '&z=' . $mapZoom . $mapLanguageQuery . '&output=embed'
-    : 'https://www.google.com/maps?q=' . rawurlencode($mapQuery) . $mapLanguageQuery . '&output=embed';
+$mapSrc = 'https://makemap.2gis.ru/widget?data=eJw1j8tOwzAQRf9lWBJVjuM8JTZdUMGGLkCIoi7ceEQtnEzkOECI8u9M0uKVNdf3zPEE5A16NDukBoO32EP1PkEYO4QK7lGHwSNE0Hnq0Ic159gGt-TF4-3Tp0idGbcveucGLd1wGLfPb_L8dZLfd1w02NfedsFSywUe1OTI8_VGiLKuF_bvQ2vwB6pY_J85go-L0Liuu9jsybZhJbC0bXVYZXO1yVQmkyxSclPIOE7LI_etYWApi_kYQaO7PfX24jCB0wGq62OZxEmiRJrHEbglvuJULmSZCJVK9iNqGFYwlf9Czr2eEd1hnQY_4PwHnx9kWQ';
+$mapSandbox = 'allow-modals allow-forms allow-scripts allow-same-origin allow-popups allow-top-navigation-by-user-activation';
 
 $this->title = $contactLabels['title'] ?? '';
 $this->params['breadcrumbs'][] = $this->title;
@@ -154,20 +142,20 @@ $this->params['meta_description'] = $address;
                         </div>
                     </div>
 
-                    <?php if ($mapCoordinatesQuery || $mapQuery): ?>
-                        <section class="contact-map-section" aria-label="<?= Html::encode($contactLabels['mapTitle'] ?? '') ?>">
-                            <h2 class="h5 fw-bold mb-3"><?= Html::encode($contactLabels['mapTitle'] ?? '') ?></h2>
-                            <div class="contact-map">
-                                <iframe
-                                    src="<?= Html::encode($mapSrc) ?>"
-                                    title="<?= Html::encode($contactLabels['mapTitle'] ?? '') ?>"
-                                    loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"
-                                    allowfullscreen>
-                                </iframe>
-                            </div>
-                        </section>
-                    <?php endif; ?>
+                    <section class="contact-map-section" aria-label="<?= Html::encode($contactLabels['mapTitle'] ?? '') ?>">
+                        <h2 class="h5 fw-bold mb-3"><?= Html::encode($contactLabels['mapTitle'] ?? '') ?></h2>
+                        <div class="contact-map">
+                            <iframe
+                                id="map_922307537"
+                                src="<?= Html::encode($mapSrc) ?>"
+                                title="<?= Html::encode($contactLabels['mapTitle'] ?? '') ?>"
+                                loading="lazy"
+                                frameborder="0"
+                                sandbox="<?= Html::encode($mapSandbox) ?>"
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                    </section>
                 </div>
             </div>
 
