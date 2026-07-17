@@ -168,7 +168,11 @@ a.desc:after {
 .redactor-layer .content-hero,
 .redactor-styles .content-hero,
 [contenteditable="true"] .content-hero {
-    border-top: 6px solid var(--content-yellow);
+    border-top: 0;
+    background:
+        linear-gradient(var(--content-yellow), var(--content-yellow)) 0 0 / 64px 6px no-repeat,
+        linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.76)),
+        linear-gradient(135deg, rgba(0, 156, 206, 0.12), rgba(253, 217, 0, 0.11) 48%, rgba(49, 30, 123, 0.1));
 }
 
 .redactor-box .content-feature,

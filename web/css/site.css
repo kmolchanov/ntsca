@@ -266,7 +266,13 @@ main > .container.has-breadcrumbs > .site-contact.py-5 {
 }
 
 .content-hero {
-    border-top: 6px solid var(--content-yellow);
+    border-top: 0;
+    background:
+        linear-gradient(var(--content-yellow), var(--content-yellow)) 0 0 / 64px 6px no-repeat,
+        linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72)),
+        radial-gradient(circle at 92% 12%, rgba(253, 217, 0, 0.34), transparent 23%),
+        radial-gradient(circle at 8% 92%, rgba(0, 156, 206, 0.18), transparent 24%),
+        linear-gradient(135deg, rgba(0, 156, 206, 0.14), rgba(163, 159, 53, 0.12) 48%, rgba(49, 30, 123, 0.1));
 }
 
 .content-feature {
