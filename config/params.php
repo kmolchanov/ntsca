@@ -7,7 +7,7 @@ return [
             'flag' => 'ru',
             'locale' => 'ru-RU',
             'appName' => 'Школа Нового Мышления в Центральной Азии',
-            'license' => 'Лицензия на образовательную деятельность в сфере среднего профессионального образования выдана Министерством образования и науки Кыргызской Республики 18 сентября 2018 года. Регистрационный номер C2018-0001.',
+            'license' => 'Лицензия на осуществление образовательной деятельности в сфере общего образования выдана Министерством образования и науки Кыргызской Республики 11 марта 2026 года. Регистрационный номер: № LM-2025-0015.',
             'menu' => [
                 'news' => 'Новости',
                 'contacts' => 'Контакты',
@@ -44,7 +44,7 @@ return [
             'flag' => 'us',
             'locale' => 'en-US',
             'appName' => 'New Thinking School of Central Asia',
-            'license' => 'The license for educational activities in the field of secondary vocational education was issued by the Ministry of Education and Science of the Kyrgyz Republic on September 18, 2018. Registration number C2018-0001.',
+            'license' => 'The license for educational activities in the field of general education was issued by the Ministry of Education and Science of the Kyrgyz Republic on March 11, 2026. Registration number: No. LM-2025-0015.',
             'menu' => [
                 'news' => 'News',
                 'contacts' => 'Contacts',
@@ -81,7 +81,7 @@ return [
             'flag' => 'kg',
             'locale' => 'ky-KG',
             'appName' => 'Борбордук Азиядагы Жаңы Ой Жүгүртүү Мектеби',
-            'license' => 'Орто кесиптик билим берүү тармагындагы билим берүү ишмердүүлүгүнө лицензия Кыргыз Республикасынын Билим берүү жана илим министрлиги тарабынан 2018-жылдын 18-сентябрында берилген. Каттоо номери C2018-0001',
+            'license' => 'Жалпы билим берүү тармагындагы билим берүү ишмердүүлүгүн жүргүзүүгө лицензия Кыргыз Республикасынын Билим берүү жана илим министрлиги тарабынан 2026-жылдын 11-мартында берилген. Каттоо номери: № LM-2025-0015.',
             'menu' => [
                 'news' => 'Жаңылыктар',
                 'contacts' => 'Байланыштар',
