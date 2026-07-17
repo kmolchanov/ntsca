@@ -5,9 +5,15 @@
 /** @var app\models\News[] $latestNews */
 
 use yii\helpers\Html;
+use yii\helpers\StringHelper;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'] = $model->breadcrumbs;
+$this->params['meta_description'] = StringHelper::truncate(
+    preg_replace('/\s+/', ' ', trim(html_entity_decode(strip_tags((string)$model->content), ENT_QUOTES | ENT_HTML5, Yii::$app->charset))),
+    160,
+    ''
+);
 $siteIndexClass = $model->is_main ? 'site-index site-index-main' : 'site-index';
 $subpages = (int)$model->show_subpages === $model::IS_YES ? $model->subpages : [];
 ?>

@@ -4,6 +4,7 @@
 /** @var app\models\News $model */
 
 use yii\helpers\Html;
+use yii\helpers\StringHelper;
 
 $lang = Yii::$app->params['lang'] ?? Yii::$app->params['defaultLanguage'] ?? 'ru';
 $defaultLang = Yii::$app->params['defaultLanguage'] ?? 'ru';
@@ -14,6 +15,11 @@ $menu = array_merge($defaultLanguage['menu'] ?? [], $language['menu'] ?? []);
 $newsTitle = $menu['news'] ?? '';
 
 $this->title = $model->title;
+$this->params['meta_description'] = StringHelper::truncate(
+    preg_replace('/\s+/', ' ', trim(html_entity_decode(strip_tags((string)($model->description ?: $model->content)), ENT_QUOTES | ENT_HTML5, Yii::$app->charset))),
+    160,
+    ''
+);
 $this->params['breadcrumbs'][] = ['label' => $newsTitle, 'url' => ['/news/index', 'lang' => $lang]];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -17,6 +17,7 @@ $labels = array_merge($defaultLanguage['news'] ?? [], $language['news'] ?? []);
 $newsTitle = $menu['news'] ?? '';
 
 $this->title = $newsTitle;
+$this->params['meta_description'] = $labels['intro'] ?? '';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

@@ -6,15 +6,43 @@ declare(strict_types=1);
 
 use app\assets\AppAsset;
 use app\assets\FontAwesomeAsset;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 FontAwesomeAsset::register($this);
+
+$route = Yii::$app->controller->route;
+$params = Yii::$app->request->get();
+$languages = Yii::$app->params['languages'] ?? [];
+$defaultLanguage = Yii::$app->params['defaultLanguage'] ?? 'ru';
+$currentLang = Yii::$app->params['lang'] ?? $defaultLanguage;
+$params['lang'] = $currentLang;
 
 $this->registerCsrfMetaTags();
 $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
 $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']);
 $this->registerMetaTag(['name' => 'description', 'content' => $this->params['meta_description'] ?? '']);
 $this->registerMetaTag(['name' => 'keywords', 'content' => $this->params['meta_keywords'] ?? '']);
+$this->registerLinkTag(['rel' => 'canonical', 'href' => Url::to(array_merge([$route], $params), true)]);
+
+foreach ($languages as $code => $language) {
+    $params['lang'] = $code;
+    $this->registerLinkTag([
+        'rel' => 'alternate',
+        'hreflang' => $code,
+        'href' => Url::to(array_merge([$route], $params), true),
+    ]);
+}
+
+if ($languages) {
+    $params['lang'] = $defaultLanguage;
+    $this->registerLinkTag([
+        'rel' => 'alternate',
+        'hreflang' => 'x-default',
+        'href' => Url::to(array_merge([$route], $params), true),
+    ]);
+}
+
 $this->registerLinkTag(['rel' => 'apple-touch-icon', 'sizes' => '180x180', 'href' => Yii::getAlias('@web/apple-touch-icon.png')]);
 $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'sizes' => '32x32', 'href' => Yii::getAlias('@web/favicon-32x32.png')]);
 $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/png', 'sizes' => '16x16', 'href' => Yii::getAlias('@web/favicon-16x16.png')]);

@@ -16,6 +16,7 @@ use yii\web\Controller;
 use yii\web\ErrorAction;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use yii\helpers\Url;
 
 class SiteController extends Controller
 {
@@ -143,6 +144,69 @@ class SiteController extends Controller
             'model' => $page,
             'latestNews' => $latestNews,
         ]);
+    }
+
+    public function actionSitemap(): Response
+    {
+        $languages = array_keys(Yii::$app->params['languages'] ?? []);
+        $urls = [];
+
+        foreach ($languages as $lang) {
+            $urls[] = [
+                'loc' => Url::to(['/site/index', 'lang' => $lang], true),
+                'changefreq' => 'weekly',
+                'priority' => '1.0',
+            ];
+
+            $urls[] = [
+                'loc' => Url::to(['/news/index', 'lang' => $lang], true),
+                'changefreq' => 'weekly',
+                'priority' => '0.7',
+            ];
+
+            $urls[] = [
+                'loc' => Url::to(['/site/contact', 'lang' => $lang], true),
+                'changefreq' => 'monthly',
+                'priority' => '0.6',
+            ];
+        }
+
+        $pages = Page::find()->active()->sortedByTree()->all();
+        foreach ($pages as $page) {
+            foreach ($languages as $lang) {
+                $urls[] = [
+                    'loc' => Url::to(['/site/index', 'lang' => $lang, 'slug' => $page->is_main ? null : $page->slug], true),
+                    'lastmod' => $page->updated_at ? date(DATE_W3C, (int)$page->updated_at) : null,
+                    'changefreq' => $page->is_main ? 'weekly' : 'monthly',
+                    'priority' => $page->is_main ? '1.0' : '0.8',
+                ];
+            }
+        }
+
+        $news = News::find()->active()->sorted()->all();
+        foreach ($news as $model) {
+            foreach ($languages as $lang) {
+                $urls[] = [
+                    'loc' => Url::to(['/news/view', 'lang' => $lang, 'slug' => $model->slug], true),
+                    'lastmod' => $model->updated_at ? date(DATE_W3C, (int)$model->updated_at) : null,
+                    'changefreq' => 'monthly',
+                    'priority' => '0.6',
+                ];
+            }
+        }
+
+        $uniqueUrls = [];
+        foreach ($urls as $url) {
+            $uniqueUrls[$url['loc']] = $url;
+        }
+
+        Yii::$app->response->format = Response::FORMAT_RAW;
+        Yii::$app->response->headers->set('Content-Type', 'application/xml; charset=UTF-8');
+        Yii::$app->response->content = $this->renderPartial('sitemap', [
+            'urls' => array_values($uniqueUrls),
+        ]);
+
+        return Yii::$app->response;
     }
 
     /**

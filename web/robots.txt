@@ -1,2 +1,6 @@
 User-agent: *
-Disallow:
+Disallow: /admin
+Disallow: /user
+Disallow: /rbac
+
+Sitemap: https://ntsca.kg/sitemap.xml
