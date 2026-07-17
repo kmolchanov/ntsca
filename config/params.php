@@ -7,6 +7,7 @@ return [
             'flag' => 'ru',
             'locale' => 'ru-RU',
             'appName' => 'Школа Нового Мышления в Центральной Азии',
+            'copyrightName' => 'Высшая школа нового мышления Центральной Азии',
             'license' => 'Лицензия на осуществление образовательной деятельности в сфере общего образования выдана Министерством образования и науки Кыргызской Республики 11 марта 2026 года. Регистрационный номер: № LM-2025-0015.',
             'menu' => [
                 'news' => 'Новости',
@@ -44,6 +45,7 @@ return [
             'flag' => 'us',
             'locale' => 'en-US',
             'appName' => 'New Thinking School of Central Asia',
+            'copyrightName' => 'Higher School of New Thinking of Central Asia',
             'license' => 'The license for educational activities in the field of general education was issued by the Ministry of Education and Science of the Kyrgyz Republic on March 11, 2026. Registration number: No. LM-2025-0015.',
             'menu' => [
                 'news' => 'News',
@@ -81,6 +83,7 @@ return [
             'flag' => 'kg',
             'locale' => 'ky-KG',
             'appName' => 'Борбордук Азиядагы Жаңы Ой Жүгүртүү Мектеби',
+            'copyrightName' => 'Борбордук Азиядагы жаңы ой жүгүртүү жогорку мектеби',
             'license' => 'Жалпы билим берүү тармагындагы билим берүү ишмердүүлүгүн жүргүзүүгө лицензия Кыргыз Республикасынын Билим берүү жана илим министрлиги тарабынан 2026-жылдын 11-мартында берилген. Каттоо номери: № LM-2025-0015.',
             'menu' => [
                 'news' => 'Жаңылыктар',

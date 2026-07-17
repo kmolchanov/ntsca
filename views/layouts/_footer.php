@@ -16,7 +16,7 @@ $language = Yii::$app->params['languages'][$lang] ?? [];
         <div class="text-center text-body-secondary small">
 
             <div class="fw-semibold mb-2">
-                &copy; <?= Html::encode($language['appName'] ?? Yii::$app->name) ?> <?= date('Y') ?>
+                &copy; <?= Html::encode($language['copyrightName'] ?? $language['appName'] ?? Yii::$app->name) ?> <?= date('Y') ?>
             </div>
 
             <?php if (!empty($language['license'])): ?>
