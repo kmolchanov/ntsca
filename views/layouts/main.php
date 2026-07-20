@@ -16,6 +16,7 @@ $this->render('_head');
 <html lang="<?= Yii::$app->language ?>" class="h-100" data-bs-theme="light">
 <head>
     <?php $this->head() ?>
+    <?= $this->render('_yandex_metrika_head') ?>
     <title><?= Html::encode($this->title) ?></title>
 </head>
 <body class="d-flex flex-column h-100">
