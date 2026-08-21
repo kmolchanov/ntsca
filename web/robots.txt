@@ -2,5 +2,7 @@ User-agent: *
 Disallow: /admin
 Disallow: /user
 Disallow: /rbac
+Disallow: /yii2images/
+Disallow: /uploads/images/
 
 Sitemap: https://ntsca.kg/sitemap.xml
