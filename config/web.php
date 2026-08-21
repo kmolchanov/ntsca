@@ -56,6 +56,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'sitemap.xml' => 'site/sitemap',
+                '' => 'site/language-redirect',
                 // static pages
                 '<lang:(ru|en|ky)>/news' => 'news/index',
                 '<lang:(ru|en|ky)>/news/<slug:[\w\-]+>' => 'news/view',

@@ -146,6 +146,19 @@ class SiteController extends Controller
         ]);
     }
 
+    public function actionLanguageRedirect(): Response
+    {
+        $languages = Yii::$app->params['languages'] ?? [];
+        $defaultLanguage = Yii::$app->params['defaultLanguage'] ?? 'ru';
+        $lang = Yii::$app->request->cookies->getValue('language', $defaultLanguage);
+
+        if (!isset($languages[$lang])) {
+            $lang = $defaultLanguage;
+        }
+
+        return $this->redirect(['/site/index', 'lang' => $lang], 301);
+    }
+
     public function actionSitemap(): Response
     {
         $languages = array_keys(Yii::$app->params['languages'] ?? []);
