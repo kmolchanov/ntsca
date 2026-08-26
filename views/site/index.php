@@ -7,7 +7,8 @@
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 
-$this->title = $model->title;
+$siteName = Yii::$app->params['appName'] ?? Yii::$app->name;
+$this->title = $model->is_main ? $siteName : $model->title;
 $this->params['breadcrumbs'] = $model->breadcrumbs;
 $this->params['meta_description'] = StringHelper::truncate(
     preg_replace('/\s+/', ' ', trim(html_entity_decode(strip_tags((string)$model->content), ENT_QUOTES | ENT_HTML5, Yii::$app->charset))),

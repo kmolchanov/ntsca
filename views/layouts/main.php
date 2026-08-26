@@ -10,6 +10,16 @@ use yii\bootstrap5\Breadcrumbs;
 use yii\helpers\Html;
 
 $this->render('_head');
+
+$siteName = trim((string)(Yii::$app->params['appName'] ?? Yii::$app->name));
+$pageTitle = trim((string)$this->title);
+$documentTitle = $pageTitle;
+
+if ($siteName !== '' && $pageTitle !== '' && $pageTitle !== $siteName) {
+    $documentTitle = $pageTitle . ' | ' . $siteName;
+} elseif ($documentTitle === '') {
+    $documentTitle = $siteName;
+}
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -17,7 +27,7 @@ $this->render('_head');
 <head>
     <?php $this->head() ?>
     <?= $this->render('_yandex_metrika_head') ?>
-    <title><?= Html::encode($this->title) ?></title>
+    <title><?= Html::encode($documentTitle) ?></title>
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>
