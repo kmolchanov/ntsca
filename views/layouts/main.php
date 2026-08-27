@@ -8,6 +8,8 @@ declare(strict_types=1);
 use app\widgets\Alert;
 use yii\bootstrap5\Breadcrumbs;
 use yii\helpers\Html;
+use yii\helpers\Json;
+use yii\helpers\Url;
 
 $this->render('_head');
 
@@ -20,6 +22,14 @@ if ($siteName !== '' && $pageTitle !== '' && $pageTitle !== $siteName) {
 } elseif ($documentTitle === '') {
     $documentTitle = $siteName;
 }
+
+$websiteStructuredData = [
+    '@context' => 'https://schema.org',
+    '@type' => 'WebSite',
+    'name' => $siteName !== '' ? $siteName : 'NTSCA',
+    'alternateName' => 'NTSCA',
+    'url' => Url::home(true),
+];
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
@@ -28,6 +38,7 @@ if ($siteName !== '' && $pageTitle !== '' && $pageTitle !== $siteName) {
     <?php $this->head() ?>
     <?= $this->render('_yandex_metrika_head') ?>
     <title><?= Html::encode($documentTitle) ?></title>
+    <script type="application/ld+json"><?= Json::htmlEncode($websiteStructuredData) ?></script>
 </head>
 <body class="d-flex flex-column h-100">
 <?php $this->beginBody() ?>

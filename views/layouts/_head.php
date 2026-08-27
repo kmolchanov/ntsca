@@ -23,6 +23,7 @@ $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
 $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']);
 $this->registerMetaTag(['name' => 'description', 'content' => $this->params['meta_description'] ?? '']);
 $this->registerMetaTag(['name' => 'keywords', 'content' => $this->params['meta_keywords'] ?? '']);
+$this->registerMetaTag(['property' => 'og:site_name', 'content' => Yii::$app->params['appName'] ?? Yii::$app->name]);
 $this->registerLinkTag(['rel' => 'canonical', 'href' => Url::to(array_merge([$route], $params), true)]);
 
 foreach ($languages as $code => $language) {
